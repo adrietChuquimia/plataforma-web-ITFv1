@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/galeria/imagenes/dashboard.png" rel="icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../static/bootstrapC1/css/admin_dashboard.css" rel="stylesheet">
+    <title>Dashboard de Administración</title>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="header">
+            <h1><i class="fas fa-users-cog"></i> Dashboard de Administración</h1>
+            <p class="mb-0">Gestión de usuarios del sistema</p>
+        </div>
+        
+        <div class="content">
+            <!-- Mensajes Flash -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ 'danger' if category == 'danger' else 'success' if category == 'success' else 'info' if category == 'info' else 'warning' }} alert-dismissible fade show" role="alert">
+                            <i class="fas fa-{{ 'exclamation-triangle' if category == 'danger' else 'check-circle' if category == 'success' else 'info-circle' if category == 'info' else 'exclamation-circle' }}"></i>
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            <!-- Estadísticas -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <div class="stats-number" id="total-users">{{ users_count or 0 }}</div>
+                        <div>Total de Usuarios</div>
+                        <div class="stats-subtitle">
+                            <i class="fas fa-sync-alt reload-icon" title="Actualizar lista" onclick="reloadUsersList()"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
+                        <div class="stats-number" id="active-users">{{ active_users or 0 }}</div>
+                        <div>Usuarios Activos</div>
+                        <div class="stats-subtitle"><i class="fas fa-check-circle"></i> Habilitados</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);">
+                        <div class="stats-number" id="inactive-users">{{ inactive_users or 0 }}</div>
+                        <div>Usuarios Inactivos</div>
+                        <div class="stats-subtitle"><i class="fas fa-ban"></i> Deshabilitados</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div class="stats-number"><i class="fas fa-shield-alt"></i></div>
+                        <div>Firebase Auth</div>
+                        <div class="stats-subtitle">Sistema Online</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--Crear usuario -->
+            <div class="create-user-form">
+                <h3><i class="fas fa-user-plus"></i> Crear Nuevo Usuario</h3>
+                <form method="POST" action="{{ url_for('auth.create_user') }}" id="createUserForm">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required placeholder="usuario@ejemplo.com">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <div class="password-input-group">
+                                    <input type="password" class="form-control" id="password" name="password" required placeholder="Mínimo 6 caracteres" minlength="6">
+                                    <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                                        <i class="fas fa-eye" id="password-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">&nbsp;</label>
+                            <div>
+                                <button type="submit" class="btn btn-custom w-100">
+                                    <i class="fas fa-plus"></i> Crear
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Tabla de usuarios -->
+            <div class="users-table">
+                <div class="p-3 d-flex justify-content-between align-items-center">
+                    <h3 class="mb-0"><i class="fas fa-list"></i> Lista de Usuarios</h3>
+                    <button class="btn btn-outline-primary btn-sm" onclick="reloadUsersList()">
+                        <i class="fas fa-sync-alt" id="reload-users-icon"></i> Actualizar Lista
+                    </button>
+                </div>
+                
+                {% if users %}
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0" id="usersTable">
+                        <thead>
+                            <tr>
+                                <th><i class="fas fa-hashtag"></i> UID</th>
+                                <th><i class="fas fa-envelope"></i> Email</th>
+                                <th><i class="fas fa-toggle-on"></i> Estado</th>
+                                <th class="text-center table-actions"><i class="fas fa-cogs"></i> Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                            <tr id="user-row-{{ user.uid }}">
+                                <td>
+                                    <code class="uid-code">{{ user.uid[:12] }}...</code>
+                                </td>
+                                <td>
+                                    <div class="user-email">{{ user.email or 'Sin email' }}</div>
+                                    
+                                </td>
+                                <td>
+                                    {% if user.disabled %}
+                                        <span class="badge bg-danger user-status-disabled">
+                                            <i class="fas fa-ban"></i> Deshabilitado
+                                        </span>
+                                    {% else %}
+                                        <span class="badge bg-success user-status-active">
+                                            <i class="fas fa-check"></i> Activo
+                                        </span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center table-actions">
+                                    <!-- Botón cambiar contraseña -->
+                                    <button type="button" class="btn btn-warning btn-sm action-btn" 
+                                            onclick="openChangePasswordModal('{{ user.uid }}', '{{ user.email }}')"
+                                            title="Cambiar contraseña">
+                                        <i class="fas fa-key"></i>
+                                    </button>
+                                    
+                                    <!-- Botón activar/desactivar -->
+                                    {% if current_admin_uid != user.uid %}
+                                        {% if user.disabled %}
+                                            <button type="button" class="btn btn-success btn-sm action-btn" 
+                                                    onclick="toggleUserStatus('{{ user.uid }}', '{{ user.email }}', false)"
+                                                    title="Activar usuario">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                        {% else %}
+                                            <button type="button" class="btn btn-secondary btn-sm action-btn" 
+                                                    onclick="toggleUserStatus('{{ user.uid }}', '{{ user.email }}', true)"
+                                                    title="Desactivar usuario">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        {% endif %}
+                                    {% else %}
+                                        <button type="button" class="btn btn-outline-secondary btn-sm action-btn" disabled
+                                                title="No puedes modificar tu propia cuenta">
+                                            <i class="fas fa-user-shield"></i>
+                                        </button>
+                                    {% endif %}
+                                    
+                                    <!-- Botón eliminar -->
+                                    {% if current_admin_uid != user.uid %}
+                                        <button type="button" class="btn btn-danger btn-sm action-btn" 
+                                                onclick="confirmDelete('{{ user.uid }}', '{{ user.email }}')"
+                                                title="Eliminar usuario">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    {% else %}
+                                        <button type="button" class="btn btn-outline-danger btn-sm action-btn" disabled
+                                                title="No puedes eliminar tu propia cuenta">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="p-4 text-center">
+                    <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                    <h5 class="text-muted">No hay usuarios registrados</h5>
+                    <p class="text-muted">Crea el primer usuario usando el formulario de arriba.</p>
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Botones de navegación -->
+            <div class="text-center mt-4">
+                <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-danger">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para cambiar contraseña -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-key"></i> Cambiar Contraseña</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="changePasswordForm" method="POST">
+                    <div class="modal-body">
+                        <p>Cambiar contraseña para: <strong id="passwordUserEmail"></strong></p>
+                        <div class="mb-3">
+                            <label for="new_password" class="form-label">Nueva Contraseña</label>
+                            <div class="password-input-group">
+                                <input type="password" class="form-control" id="new_password" name="new_password" required minlength="6" placeholder="Mínimo 6 caracteres">
+                                <button type="button" class="password-toggle" onclick="togglePassword('new_password')">
+                                    <i class="fas fa-eye" id="new_password-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirm_password" class="form-label">Confirmar Contraseña</label>
+                            <div class="password-input-group">
+                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required minlength="6" placeholder="Confirmar nueva contraseña">
+                                <button type="button" class="password-toggle" onclick="togglePassword('confirm_password')">
+                                    <i class="fas fa-eye" id="confirm_password-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="fas fa-times"></i> Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-warning">
+                            <i class="fas fa-key"></i> Cambiar Contraseña
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación para activar/desactivar -->
+    <div class="modal fade" id="statusModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-toggle-on"></i> <span id="statusModalTitle">Cambiar Estado</span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p><span id="statusModalText">¿Confirmas el cambio de estado para el usuario?</span></p>
+                    <p><strong id="statusUserEmail"></strong></p>
+                    <div id="statusWarning" class="alert alert-warning" style="display: none;">
+                        <i class="fas fa-exclamation-triangle"></i> El usuario no podrá iniciar sesión mientras esté desactivado.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                    <form id="statusForm" method="POST" style="display: inline;">
+                        <button type="submit" class="btn" id="statusSubmitBtn">
+                            <i class="fas fa-toggle-on"></i> Confirmar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación para eliminar -->
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <h5 class="modal-title"><i class="fas fa-exclamation-triangle"></i> Confirmar Eliminación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro de que quieres eliminar permanentemente el usuario?</p>
+                    <p><strong id="deleteUserEmail"></strong></p>
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-triangle"></i> 
+                        <strong>¡ADVERTENCIA!</strong> Esta acción no se puede deshacer. Todos los datos del usuario se perderán.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                    <form id="deleteForm" method="POST" style="display: inline;">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Eliminar Permanentemente
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Función para mostrar/ocultar contraseña
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(inputId + '-eye');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // Función para abrir modal de cambio de contraseña
+        function openChangePasswordModal(uid, email) {
+            document.getElementById('passwordUserEmail').textContent = email;
+            document.getElementById('changePasswordForm').action = "{{ url_for('auth.change_password', uid='PLACEHOLDER') }}".replace('PLACEHOLDER', uid);
+            
+            // Limpiar formulario
+            document.getElementById('new_password').value = '';
+            document.getElementById('confirm_password').value = '';
+            
+            const modal = new bootstrap.Modal(document.getElementById('changePasswordModal'));
+            modal.show();
+        }
+
+        // Función para cambiar estado de usuario
+        function toggleUserStatus(uid, email, isActive) {
+            const action = isActive ? 'desactivar' : 'activar';
+            const modalTitle = isActive ? 'Desactivar Usuario' : 'Activar Usuario';
+            const modalText = `¿Estás seguro de que quieres ${action} el usuario?`;
+            const btnClass = isActive ? 'btn-secondary' : 'btn-success';
+            const btnIcon = isActive ? 'fa-ban' : 'fa-check';
+            
+            document.getElementById('statusModalTitle').textContent = modalTitle;
+            document.getElementById('statusModalText').textContent = modalText;
+            document.getElementById('statusUserEmail').textContent = email;
+            document.getElementById('statusForm').action = "{{ url_for('auth.toggle_user_status', uid='PLACEHOLDER') }}".replace('PLACEHOLDER', uid);
+            
+            const submitBtn = document.getElementById('statusSubmitBtn');
+            submitBtn.className = `btn ${btnClass}`;
+            submitBtn.innerHTML = `<i class="fas ${btnIcon}"></i> ${action.charAt(0).toUpperCase() + action.slice(1)}`;
+            
+            const warning = document.getElementById('statusWarning');
+            warning.style.display = isActive ? 'block' : 'none';
+            
+            const modal = new bootstrap.Modal(document.getElementById('statusModal'));
+            modal.show();
+        }
+
+        // Función para confirmar eliminación
+        function confirmDelete(uid, email) {
+            document.getElementById('deleteUserEmail').textContent = email;
+            document.getElementById('deleteForm').action = "{{ url_for('auth.delete_user', uid='PLACEHOLDER') }}".replace('PLACEHOLDER', uid);
+            
+            const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+            modal.show();
+        }
+
+        // Función para recargar lista de usuarios
+        function reloadUsersList() {
+            const reloadIcon = document.getElementById('reload-users-icon');
+            reloadIcon.classList.add('fa-spin');
+            
+            // Redireccionar para recargar la lista
+            window.location.href = "{{ url_for('auth.reload_users') }}";
+        }
+
+        // Validación de formulario de cambio de contraseña
+        document.getElementById('changePasswordForm').addEventListener('submit', function(e) {
+            const newPassword = document.getElementById('new_password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+            
+            if (newPassword !== confirmPassword) {
+                e.preventDefault();
+                alert('Las contraseñas no coinciden. Por favor, inténtalo de nuevo.');
+                document.getElementById('confirm_password').focus();
+                return false;
+            }
+            
+            if (newPassword.length < 6) {
+                e.preventDefault();
+                alert('La contraseña debe tener al menos 6 caracteres.');
+                document.getElementById('new_password').focus();
+                return false;
+            }
+        });
+
+        // Validación de formulario de creación de usuario
+        document.getElementById('createUserForm').addEventListener('submit', function(e) {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (!email.includes('@')) {
+                e.preventDefault();
+                alert('Por favor, introduce un email válido.');
+                document.getElementById('email').focus();
+                return false;
+            }
+            
+            if (password.length < 6) {
+                e.preventDefault();
+                alert('La contraseña debe tener al menos 6 caracteres.');
+                document.getElementById('password').focus();
+                return false;
+            }
+        });
+
+        // Auto-dismiss alerts after 5 seconds
+        setTimeout(function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                if (alert.classList.contains('alert-dismissible')) {
+                    const bsAlert = new bootstrap.Alert(alert);
+                    bsAlert.close();
+                }
+            });
+        }, 5000);
+
+        // Confirmación de contraseña en tiempo real
+        document.getElementById('confirm_password').addEventListener('input', function() {
+            const newPassword = document.getElementById('new_password').value;
+            const confirmPassword = this.value;
+            
+            if (confirmPassword && newPassword !== confirmPassword) {
+                this.classList.add('is-invalid');
+            } else {
+                this.classList.remove('is-invalid');
+            }
+        });
+
+        // Limpiar formulario al cerrar modal
+        document.getElementById('changePasswordModal').addEventListener('hidden.bs.modal', function() {
+            document.getElementById('new_password').value = '';
+            document.getElementById('confirm_password').value = '';
+            document.getElementById('confirm_password').classList.remove('is-invalid');
+        });
+    </script>
+</body>
+</html>

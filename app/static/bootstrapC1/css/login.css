@@ -1,0 +1,58 @@
+ body {
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .card {
+      background-color: #121212;
+      border: 1px solid #333;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+      border-radius: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+    }
+
+    h3 {
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #0ff;
+      margin-bottom: 1rem;
+    }
+
+    .form-label {
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    .form-control {
+      background-color: #222;
+      color: #fff;
+      border: 1px solid #444;
+    }
+
+    .form-control:focus {
+      border-color: #0ff;
+      box-shadow: 0 0 0 0.2rem rgba(0, 255, 255, 0.2);
+    }
+
+    .btn-rojo {
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+      border: none;
+      transition: background 0.3s ease;
+      font-weight: bold;
+    }
+
+    .btn-rojo:hover {
+      background: linear-gradient(to right, #ff4b2b, #ff416c);
+    }
+
+    .bi {
+      margin-right: 0.5rem;
+    }

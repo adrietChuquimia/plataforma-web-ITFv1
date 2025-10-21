@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <link href="../static/galeria/imagenes/cuenta.png" rel="icon">
+  <link href="imagenes/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+  <link href="../static/bootstrapC1/css/login.css" rel="stylesheet">
+  <title>Iniciar Sesión</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="card p-4">
+          <h3 class="text-center">
+            <p class="bi bi-shield-lock-fill">VERIFICACIÓN DE ACCESO</p> 
+          </h3>
+
+          {% if error %}
+          <div class="alert alert-danger">{{ error }}</div>
+          {% endif %}
+          <!-- Mensajes flash con botón cerrar -->
+          {% set messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% set category, message = messages[-1] %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endif %}
+
+          <form method="POST">
+            <div class="mb-3">
+              <label class="form-label">
+                <i class="bi bi-envelope-fill"></i> Correo Electrónico
+              </label>
+              <input type="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">
+                <i class="bi bi-lock-fill"></i> Contraseña
+              </label>
+              <div class="input-group">
+                <input type="password" id="password" name="password" class="form-control" required>
+                <span class="input-group-text" style="cursor:pointer;"
+                      onclick="this.previousElementSibling.type=this.previousElementSibling.type==='password'?'text':'password';this.innerHTML=this.innerHTML==='👀'?'🙈':'👀'">👀</span>
+              </div>
+            </div>
+
+            <button class="btn btn-rojo w-100">
+              <i class="bi bi-box-arrow-in-right"></i> Ingresar
+            </button>
+
+            <a href="{{ url_for('main.inicio') }}" class="d-block text-center mt-3 text-decoration-none text-info">
+              <i class="bi bi-arrow-left-circle"></i> Volver a la página principal
+            </a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

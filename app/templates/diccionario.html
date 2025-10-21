@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../static/galeria/imagenes/diccionario.png" rel="icon">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="../static/bootstrapC1/css/diccionario.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Diccionario Automotriz</title>
+</head>
+
+<body>
+    <header>
+        <div class="header-title">
+            <i class="fas fa-database"></i>DICCIONARIO DE PIEZAS AUTOMOTRICES
+        </div>
+        <div class="header-buttons">
+            <a href="{{ url_for('main.menuest') }}" class="btn">
+                <i class="fas fa-home"></i> Inicio
+            </a>
+            <a href="{{ url_for('auth.logout') }}" class="btn">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            </a>
+        </div>
+    </header>
+
+    <input type="text" id="buscador" placeholder="Buscar componente..." autofocus />
+    <div id="lista-componentes"></div>
+
+    <!-- Botón de scroll hacia arriba -->
+    <button id="scrollToTop" onclick="scrollToTop()">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script>
+        async function cargarComponentes() {
+            const res = await fetch('/componentes');
+            const componentes = await res.json();
+
+            const contenedor = document.getElementById('lista-componentes');
+            contenedor.innerHTML = '';
+
+            // Iterar sobre las entradas del JSON
+            Object.entries(componentes).forEach(([nombre, info]) => {
+                const card = document.createElement('div');
+                card.classList.add('tarjeta');
+                card.dataset.nombre = nombre.toLowerCase();
+
+                let html = `<h2><i class="bi bi-cpu"></i> ${nombre}</h2><ul>`;
+                info.forEach(texto => {
+                    html += `<li>${texto}</li>`;
+                });
+                html += '</ul>';
+
+                card.innerHTML = html;
+                contenedor.appendChild(card);
+            });
+        }
+
+        function filtrarComponentes() {
+            const texto = document.getElementById('buscador').value.toLowerCase();
+            const tarjetas = document.querySelectorAll('.tarjeta');
+
+            tarjetas.forEach(card => {
+                const nombre = card.dataset.nombre;
+                card.style.display = nombre.includes(texto) ? '' : 'none';
+            });
+        }
+
+        document.getElementById('buscador').addEventListener('input', filtrarComponentes);
+
+        // Funcionalidad del botón scroll to top
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mostrar/ocultar botón según scroll
+        window.addEventListener('scroll', function () {
+            const scrollButton = document.getElementById('scrollToTop');
+            if (window.pageYOffset > 300) {
+                scrollButton.classList.add('visible');
+            } else {
+                scrollButton.classList.remove('visible');
+            }
+        });
+
+        window.onload = cargarComponentes;
+    </script>
+</body>
+</html>

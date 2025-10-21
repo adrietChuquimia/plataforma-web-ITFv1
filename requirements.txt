@@ -1,0 +1,27 @@
+# --- Core del servidor ---
+Flask==3.1.0
+flask-cors==5.0.1
+gunicorn==23.0.0
+
+# --- Firebase / JWT ---
+firebase_admin==7.1.0
+Pyrebase4==4.8.0
+cryptography==45.0.3
+PyJWT==2.10.1
+requests==2.32.3
+
+# --- Ciencia de datos y visión ---
+opencv-python-headless==4.11.0.86
+numpy==1.24.3
+pandas==2.2.3
+matplotlib==3.10.1
+scikit-fuzzy==0.5.0
+experta==1.9.4
+pillow==11.1.0
+
+# --- IA y redes neuronales ---
+tensorflow==2.13.0
+keras==2.13.1
+ultralytics==8.3.85
+huggingface-hub==0.29.3
+transformers==4.49.0

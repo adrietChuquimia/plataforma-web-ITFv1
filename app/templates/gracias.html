@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/galeria/imagenes/mecanismo.png" rel="icon">
+    <link href="../static/bootstrapC1/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../static/bootstrapC1/css/parati.css" rel="stylesheet">
+    <title>El Futuro te Espera</title>
+</head>
+
+<body>
+    <!-- PANTALLA DE CARGA -->
+    <div class="loading-screen">
+        <div class="d-flex align-items-center">
+            <div class="drum-beat"></div>
+            <div class="drum-beat"></div>
+            <div class="drum-beat"></div>
+            <div class="drum-beat"></div>
+        </div>
+        <div class="loading-text">Preparando algo para ti...</div>
+    </div>
+
+    <header>
+        <div class="header-title">
+            <p class="subtitle">GRACIAS POR CONFIAR EN NOSOTROS :)</br> ES NUESTRO TURNO DE CREER EN TI</p>
+        </div>
+        <div class="header-buttons">
+            <a href="{{ url_for('main.menuest') }}" class="btn">
+                <i class="fas fa-home"></i>Inicio
+            </a>
+            <a href="{{ url_for('auth.logout') }}" class="btn">
+                <i class="fas fa-sign-out-alt"></i>Cerrar Sesión
+            </a>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="main-content">
+    <div class="row justify-content-center">
+        <h1 class="main-title">¡BIENVENIDO A LA FAMILIA FRANFER!</h1>
+        <div class="text-center">
+            <img src="../static/galeria/imagenes/LOGO FRANFER OFICIAL.jpg" alt=""
+            style="width:400px; height:240px; object-fit:cover;"></br></br>
+        </div>
+
+        <div class="text-center mb-5">
+            <h2
+            style="color: var(--white); font-size: 2.2rem; margin-bottom: 2rem; font-weight: 800; text-transform: uppercase; letter-spacing: 3px;">
+             ESTO ES <span
+            style="color: var(--white); text-shadow: 0 0 15px var(--red-glow); font-size: 2.5rem;">PARA
+            TI</span>, GUERRERO 
+            </h2>
+            
+            <p style="color: var(--white); font-size: 1.4rem; line-height: 1.8; font-weight: bold;">
+            Desde ahora ya formas parte de la <span style="color: var(--red);">ÉLITE AUTOMOTRIZ</span><br>
+            Los que <strong style="color: var(--red-glow);">DOMINAN</strong> motores, circuitos y el
+            futuro de la movilidad<br>
+            <span style="color: var(--white); font-size: 1.6rem; text-shadow: 0 0 10px var(--red-glow);">¡TU MOMENTO ES AHORA!</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="text-center">
+            <img src="../static/galeria/imagenes/mecanico.png" alt=""
+            style="width:400px; height:400px; object-fit:cover;">
+    </div>
+
+    <div class="final-message">
+        <div class="container">
+            <h2 class="final-title"
+                style="font-size: 4rem; font-weight: 900; text-transform: uppercase; letter-spacing: 5px; text-shadow: 3px 3px 0px var(--black), 0 0 30px var(--red-glow);">
+                ¡ACELERA SIN LÍMITES, QUE NADA TE DETENGA! 
+            </h2>
+            <p style="font-size: 1.4rem; color: var(--red-glow); margin-bottom: 1rem; font-weight: 800;">
+                CADA MOTOR QUE REPARAS, CADA CÓDIGO QUE DOMINAS,<br>
+                TE ACERCA MÁS A SER UNA <span
+                    style="color: var(--white); text-shadow: 0 0 15px var(--red);">LEYENDA</span>
+            </p>
+
+            <div class="mt-5"
+                style="border: 3px solid var(--red); padding: 2rem; border-radius: 15px; background: linear-gradient(45deg, var(--black), var(--dark-blue));">
+                <p style="color: var(--white); font-size: 1.3rem; font-weight: bold; line-height: 1.6;">
+                    No serás solo un mecánico o técnico...<br>ERES EL FUTURO DEL MUNDO AUTOMOTRIZ<br>¡CONVIERTÉTE EN
+                    EL MEJOR!<br>
+                    <strong
+                        style="color: var(--white); font-size: 1.6rem; text-shadow: 0 0 15px var(--red);">INNOVANDO
+                        EN LA ENSEÑANZA, DESCUBRIENDO NUEVAS SOLUCIONES</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

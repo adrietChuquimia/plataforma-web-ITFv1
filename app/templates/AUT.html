@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>I_T_F</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!--Convertir logo a icono parte superior-->
+    <link href="../static/galeria/imagenes/LOGO FRANFER OFICIAL.jpg" rel="icon">
+
+    <!-- bootstrap CSS Files -->
+    <link href="/static/bootstrapC1/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/bootstrapC1/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/bootstrapC1/aos/aos.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="/static/bootstrapC1/css/main.css" rel="stylesheet">
+</head>
+
+<body class="index-page bg-dark">
+
+    <header id="header" class="header d-flex align-items-center fixed-top bg-dark">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="{{ url_for('main.inicio') }}" class="logo d-flex align-items-center me-auto me-lg-0">
+                <h1>INSTITUTO<br>TECNOLÓGICO<br>FRANFER</h1>
+            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="{{ url_for('main.inicio') }}">Página Principal<br></a></li>
+                    <li><a href="#inicio">Volver al inicio</a></li>
+                    <li><a href="#sobre">Sobre la carrera</a></li>
+                    <li><a href="#malla">Malla Curricular</a></li>
+                    <li><a href="#perfil">Perfil Profesional</a></li>
+                    <li><a href="#video">Video</a></li>
+                    <li><a href="#contactos">Contactos</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+
+    <div id="inicio" class="page-title bg-dark" data-aos="zoom-in" data-aos-duration="1500">
+        <div style="width: 100vw; height: 55vh; overflow: hidden; position: relative;">
+            <img src="/static/galeria/imagenes/carreras.jpg" alt="Fondo"
+                style="width: 100%; height: auto; position: absolute; top: 36%; left: 0;">
+        </div>
+    </div>
+
+    <!-- Service Details Section -->
+    <section id="perfil" class="service-details section">
+        <div class="container">
+            <div class="row gy-5">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card bg-dark text-white shadow-lg border-0 rounded-4">
+                        <div class="card-header bg-gradient text-center fs-4 fw-bold">
+                            Autotrónica
+                        </div>
+                        <div class="card-body bg-black">
+                            <div
+                                class="d-flex align-items-center justify-content-between p-3 bg-gradient rounded-3">
+                                <a href="#perfil" onclick="mostrarTexto(event)"
+                                    class="text-white text-decoration-none d-flex align-items-center w-100"
+                                    style="background-color: gray; color: white; padding: 10px 20px; display: inline-block; border-radius: 8px; transition: all 0.3s;"
+                                    onmouseover="this.style.backgroundColor='red'; this.style.color='black';"
+                                    onmouseout="this.style.backgroundColor='gray'; this.style.color='white';">
+                                    <i id="icono" class="bi bi-arrow-right-circle me-2"
+                                        style="transition: transform 0.3s;"></i>
+                                    <span class="fw-semibold">Perfil Profesional</span>
+                                </a>
+                            </div>
+
+                            <!-- Texto oculto -->
+                            <div id="texto-perfil" class="mt-3 text-light text-center fw-light fs-3"
+                                style="display: none;">
+                                El técnico Superior en Autotrónica realiza el diagnóstico, mantenimiento y reparación de
+                                los distintos sistemas que compone el vehículo con énfasis en el funcionamiento de los
+                                componentes eléctricos, electrónicos y unidades de control. En el campo laboral
+                                organiza, lidera equipos de trabajo y cuidado del medio ambiente.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-8 ps-lg-5" data-aos="fade-up" data-aos-delay="200">
+                    <section id="sobre" class="about section">
+                        <h2 style="font-family: 'Merriweather', serif; font-weight: bold;">Sobre la carrera de Autotrónica</h2>
+                        <p style="font-size:18px; text-align:justify;">
+                            El estudio de autotrónica a nivel de Técnico Superior proporciona ventajas y oportunidades desde la perspectiva personal y también profesional.
+                            La demanda de empleo en el ámbito automotriz abarca una necesidad de
+                            expertos en autotrónica a causa de la creciente digitalización y complejidad de los
+                            automóviles. Con el aumento continuo de autos y la transformación
+                            tecnológica, la demanda de expertos calificados en sistemas es siempre constante
+                            de control de vehículos y electrónicos.
+
+                            El Técnico Superior en Autotrónica ofrece una capacitación especializada desde
+                            la electrónica elemental hasta los sistemas de gestión del motor más sofisticados,
+                            sistemas de entretenimiento y navegación, así como control de emisiones. Esto capacita a los
+                            alumnos para gestionar una diversidad de problemas técnicos y electrónicos.
+                            Los profesionales en Autotrónica tienen la posibilidad de desempeñarse en talleres,
+                            concesionarios de autos, flotas comerciales, independientes y el sector
+                            de arreglo de coches de lujo.
+
+                            Una capacitación técnica en Autotrónica no solamente capacita para el trabajo, sino que
+                            puede utilizarse como fundamento para el desarrollo profesional y la capacitación continua,
+                            incluyendo la consecución de certificaciones complementarias y especializaciones que tienen el potencial de llevar
+                            a posiciones más elevadas.
+                            El aprendizaje práctico es el enfoque de la formación técnica en Autotrónica, lo que posibilita que los
+                            alumnos que obtengan competencias útiles mediante proyectos reales y prácticos,
+                            perfeccionando su habilidad para solucionar problemas y llevar a cabo tareas técnicas de
+                            eficazmente.
+                            Para quienes tienen interés en la ingeniería y la tecnología, estudiar Autotrónica tiene el potencial de
+                            ser una carrera que brinda la satisfacción de observar los resultados de
+                            su labor, como el mejoramiento del desempeño o la reparación exitosa de un sistema electrónico
+                            de un coche.
+
+                            En resumen, estudiar autotrónica a nivel técnico superior puede ofrecer una carrera estable,
+                            con oportunidades de crecimiento y especialización en un sector siempre en evolución. Es una
+                            excelente opción para aquellos interesados en la tecnología y la ingeniería, con un enfoque
+                            práctico y aplicable directamente al mundo laboral.</p>
+                    </section>
+                </div>
+
+                <section id="malla" class="services section">
+                    <h2 style="font-family: 'Merriweather', serif; font-weight: bold; text-align: center;">
+                        Malla Curricular de la carrera de Autotrónica
+                    </h2>
+                    <img src="/static/galeria/imagenes/mallaAut.jpg" alt="" class="img-fluid services-img">
+                </section>
+
+                <section id="video">
+                    <h2 style="font-family: 'Merriweather', serif; font-weight: bold; text-align: center;">
+                        Ventajas de estudiar Autotrónica<br>en el Instituto Tecnológico FRANFER
+                    </h2>
+                    <div style="display: flex; justify-content: center">
+                        <video width="490" height="280" controls class="rounded-bottom">
+                            <source src="/static/galeria/videos/ventajasAUT.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <!-- pie de pagina -->
+    <div id="contactos"><br>
+        <div id="footer-container"></div>
+    </div>
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <script>
+        function mostrarTexto(event) {
+            event.preventDefault();
+            const texto = document.getElementById("texto-perfil");
+            const icono = document.getElementById("icono");
+
+            if (texto.style.display === "none") {
+                texto.style.display = "block";
+                icono.style.transform = "rotate(90deg)";
+            } else {
+                texto.style.display = "none";
+                icono.style.transform = "rotate(0deg)";
+            }
+        }
+    </script>
+
+    <!-- JS Files -->
+    <script src="/static/bootstrapC1/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/bootstrapC1/aos/aos.js"></script>
+    <script src="/static/bootstrapC1/swiper-bundle.min.js"></script>
+    <script src="/static/bootstrapC1/glightbox/js/glightbox.min.js"></script>
+    <script src="/static/bootstrapC1/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="/static/bootstrapC1/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/static/bootstrapC1/purecounter/purecounter_vanilla.js"></script>
+    <script src="/static/bootstrapC1/js/main.js"></script>
+    <script src="/static/bootstrapC1/js/footer.js" defer></script>
+
+</body>
+
+</html>

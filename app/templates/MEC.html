@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>I_T_F</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="../static/galeria/imagenes/LOGO FRANFER OFICIAL.jpg" rel="icon">
+  <link href="{{ url_for('static', filename='bootstrapC1/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='bootstrapC1/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='bootstrapC1/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='bootstrapC1/css/main.css') }}" rel="stylesheet">
+</head>
+
+<body class="index-page bg-dark">
+
+  <!-- Header -->
+  <header id="header" class="header d-flex align-items-center fixed-top bg-dark">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      <a href="{{ url_for('main.inicio') }}" class="logo d-flex align-items-center me-auto me-lg-0">
+        <h1>INSTITUTO<br>TECNOLÓGICO<br>FRANFER</h1>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{{ url_for('main.inicio') }}">Página Principal</a></li>
+          <li><a href="#inicio">Volver al inicio</a></li>
+          <li><a href="#sobre">Sobre la carrera</a></li>
+          <li><a href="#malla">Malla Curricular</a></li>
+          <li><a href="#perfil">Perfil Profesional</a></li>
+          <li><a href="#video">Video</a></li>
+          <li><a href="#contactos">Contactos</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Imagen de cabecera -->
+  <div id="inicio" class="page-title bg-dark" data-aos="zoom-in" data-aos-duration="1500">
+    <div style="width: 100vw; height: 55vh; overflow: hidden; position: relative;">
+      <img src="{{ url_for('static', filename='galeria/imagenes/carreras.jpg') }}" alt="Fondo"
+        style="width: 100%; height: auto; position: absolute; top: 36%; left: 0;">
+    </div>
+  </div>
+
+  <!-- Perfil Profesional -->
+  <section id="perfil" class="service-details section">
+    <div class="container">
+      <div class="row gy-5">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="card bg-dark text-white shadow-lg border-0 rounded-4">
+            <div class="card-header bg-primary text-center fs-4 fw-bold">Mecánica Automotriz</div>
+            <div class="card-body bg-black">
+              <div class="d-flex align-items-center justify-content-between p-3 bg-primary bg-gradient rounded-3">
+                <a href="#perfil" onclick="mostrarTexto(event)" class="text-white text-decoration-none d-flex align-items-center w-100"
+                  style="background-color: #0d6efd; padding: 10px 20px; border-radius: 8px; transition: all 0.3s;"
+                  onmouseover="this.style.backgroundColor='red'; this.style.color='black';"
+                  onmouseout="this.style.backgroundColor='#0d6efd'; this.style.color='white';">
+                  <i id="icono" class="bi bi-arrow-right-circle me-2" style="transition: transform 0.3s;"></i>
+                  <span class="fw-semibold">Perfil Profesional</span>
+                </a>
+              </div>
+              <div id="texto-perfil" class="mt-3 text-light text-center fw-light fs-3" style="display: none;">
+                El técnico Superior en Mecánica Automotriz realiza actividades de mantenimiento, diagnóstico,
+                reparación de sistemas eléctricos y electrónicos, motores a gasolina, motores diesel, trenes de
+                potencia y sistemas del automóvil. En el campo laboral aplica normas de seguridad industrial
+                y medio ambiente.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Información de la carrera -->
+        <div class="col-lg-8 ps-lg-5" data-aos="fade-up" data-aos-delay="200">
+          <section id="sobre" class="about section">
+            <h2 style="font-family: 'Merriweather', serif; font-weight: bold;">Sobre la carrera de Mecánica Automotriz</h2>
+            <p style="font-size:18px; text-align:justify;">
+                Estudiar Mecánica Automotriz a nivel Técnico Superior ofrece una serie oportunidades
+                en el ámbito profesional y personal.
+
+                Existe una alta demanda laboral en el sector automotriz, es una de las industrias más grandes y estables a
+                nivel mundial. Con el crecimiento constante de vehículos y su evolución tecnológica,
+                existe una necesidad continua de técnicos capacitados para mantener y reparar vehículos.
+
+                Para Mecánica Automotriz se proporciona una formación especializada que
+                abarca desde la mecánica básica hasta los sistemas más avanzados. Esto prepara a los 
+                estudiantes para manejar una amplia gama de problemas técnicos.
+
+                Los técnicos automotrices pueden trabajar en una variedad de entornos, incluyendo talleres
+                independientes, concesionarios de automóviles, flotas de vehículos comerciales y el sector de reparación
+                de vehículos de lujo. Con la creciente tendencia hacia los vehículos eléctricos y híbridos, la
+                especialización en esta área también puede abrir nuevas oportunidades laborales.
+
+                Se incluye capacitación en las últimas tecnologías y herramientas
+                del sector automotriz, como diagnósticos computarizados y técnicas de reparación avanzada, lo que mejora
+                significativamente la empleabilidad del graduado.
+
+                Una formación técnica no solo prepara para el empleo inmediato, sino que también puede servir como base
+                para la formación continua y el desarrollo profesional, incluyendo la obtención de certificaciones
+                adicionales y especializaciones que pueden llevar a puestos más altos y mejor remunerados.
+
+                La formación técnica en mecánica automotriz enfatiza el aprendizaje práctico, permitiendo a los
+                estudiantes adquirir habilidades valiosas a través de prácticas y proyectos reales, mejorando su
+                capacidad para resolver problemas y realizar tareas técnicas complejas de manera efectiva.
+
+                Para aquellos interesados en la tecnología y la ingeniería, trabajar en la Mecánica Automotriz puede ser
+                una carrera gratificante que ofrece la satisfacción de ver los resultados tangibles de su trabajo, como
+                la reparación exitosa de un vehículo o la mejora del rendimiento de un automóvil.
+                En resumen, estudiar mecánica automotriz a nivel técnico superior puede ofrecer una carrera estable, con
+                oportunidades de crecimiento y especialización en un sector siempre en evolución. Es una excelente
+                opción para aquellos interesados en la tecnología y la ingeniería, con un enfoque práctico y aplicable
+                directamente al mundo laboral.
+              </p>
+          </section>
+        </div>
+
+        <!-- Malla curricular -->
+        <section id="malla" class="services section">
+          <h2 style="font-family: 'Merriweather', serif; font-weight: bold; text-align: center;">Malla Curricular de la carrera de Mecánica Automotriz</h2>
+          <img src="{{ url_for('static', filename='galeria/imagenes/mallaMec.jpg') }}" alt="Malla" class="img-fluid services-img">
+        </section>
+
+        <!-- Video -->
+        <section id="video">
+          <h2 style="font-family: 'Merriweather', serif; font-weight: bold; text-align: center;">
+            Ventajas de estudiar Mecánica Automotriz<br>en el Instituto Tecnológico FRANFER
+          </h2>
+          <div style="display: flex; justify-content: center">
+            <video width="490" height="280" controls class="rounded-bottom">
+              <source src="{{ url_for('static', filename='galeria/videos/ventajasMEC.mp4') }}" type="video/mp4">
+            </video>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="contactos"><br>
+    <div id="footer-container"></div>
+  </div>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+
+  <!-- JS -->
+  <script>
+    function mostrarTexto(event) {
+      event.preventDefault();
+      const texto = document.getElementById("texto-perfil");
+      const icono = document.getElementById("icono");
+
+      if (texto.style.display === "none") {
+        texto.style.display = "block";
+        icono.style.transform = "rotate(90deg)";
+      } else {
+        texto.style.display = "none";
+        icono.style.transform = "rotate(0deg)";
+      }
+    }
+  </script>
+
+  <script src="{{ url_for('static', filename='bootstrapC1/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='bootstrapC1/aos/aos.js') }}"></script>
+  <script src="{{ url_for('static', filename='bootstrapC1/swiper-bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='bootstrapC1/glightbox/js/glightbox.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='bootstrapC1/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='bootstrapC1/isotope-layout/isotope.pkgd.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='bootstrapC1/purecounter/purecounter_vanilla.js') }}"></script>
+  <script src="{{ url_for('static', filename='bootstrapC1/js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='bootstrapC1/js/footer.js') }}" defer></script>
+
+</body>
+</html>

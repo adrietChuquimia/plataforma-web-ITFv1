@@ -1,0 +1,1842 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-primary: #ff0033;
+    --color-secondary: #0064ff;
+    --color-success: #00ff88;
+    --color-warning: #ffd700;
+    --color-danger: #ff0032;
+    --bg-dark: #0a0a0a;
+    --bg-panel: rgba(26, 26, 46, 0.9);
+    --border-glow: rgba(0, 100, 255, 0.5);
+}
+
+body {
+    background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a2e 50%, #16213e 100%);
+    font-family: 'Exo 2', sans-serif;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    transition: background 0.3s ease;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 0, 50, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(0, 100, 255, 0.1) 0%, transparent 50%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ============================================
+   HEADER RESPONSIVE
+   ============================================ */
+/* Header */
+header {
+    background: linear-gradient(135deg, #0d1117 0%, #1a0000 50%, #000033 100%);
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(90deg, #ff0033, #0066ff, #ff0033) 1;
+    padding: 5px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+    animation: slideIn 1s ease-out;
+    backdrop-filter: blur(5px);
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg,
+            rgba(255, 0, 50, 0.1) 0%,
+            rgba(0, 100, 255, 0.1) 50%,
+            rgba(255, 0, 50, 0.1) 100%);
+    animation: pulse 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.header-title {
+    font-size: 2.6em;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: white;
+    background-size: 100% 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 15px;
+    position: relative;
+    z-index: 2;
+    flex-wrap: wrap;
+    min-width: 150px;
+}
+
+.header-title .subtitle {
+    font-size: 0.4em;
+    font-weight: 400;
+    margin-top: 1px;
+    opacity: 0.8;
+}
+
+.btn {
+    background: linear-gradient(135deg, #ff0033, #0066ff);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    color: #ffffff;
+    padding: 5px 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: 'Orbitron', monospace;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn {
+    border-radius: 25px;
+    font-size: 1rem;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradi ent(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 25px rgba(255, 0, 50, 0.4), 0 0 50px rgba(0, 100, 255, 0.3);
+}
+
+/* Header con efecto de neón */
+.main-title {
+    text-align: center;
+    padding: 60px 0;
+    position: relative;
+}
+
+.main-title h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+/* ============================================
+   PANEL DEL TUTOR RESPONSIVE
+   ============================================ */
+.tutor-panel {
+    background: linear-gradient(135deg, rgba(255, 0, 50, 0.15), rgba(0, 100, 255, 0.15));
+    border: 2px solid var(--color-primary);
+    border-radius: 15px;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(255, 0, 50, 0.3);
+    animation: slideInDown 0.6s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.tutor-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes slideInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.tutor-icon {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    text-shadow: 0 0 20px var(--color-primary);
+    animation: float 3s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.tutor-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.tutor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tutor-label {
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.close-tutor {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.close-tutor:hover {
+    background: rgba(255, 0, 50, 0.3);
+    transform: rotate(90deg);
+}
+
+.tutor-message {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    word-wrap: break-word;
+}
+
+.tutor-metrics {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.metric {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--color-warning);
+}
+
+/* ============================================
+   CONTENEDOR PRINCIPAL RESPONSIVE
+   ============================================ */
+.main-container {
+    max-width: 1200px;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+}
+
+/* ============================================
+   PANEL DE INFORMACIÓN RESPONSIVE
+   ============================================ */
+.info-panel {
+    background: var(--bg-panel);
+    border: 1px solid var(--color-secondary);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.info-panel::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary), var(--color-primary));
+    border-radius: 15px;
+    z-index: -1;
+    opacity: 0.7;
+    animation: border-glow 3s infinite;
+}
+
+@keyframes border-glow {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* ============================================
+   INDICADOR DE NIVEL RESPONSIVE
+   ============================================ */
+.level-indicator {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.level-badge {
+    display: inline-block;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    padding: 0.6rem 1.5rem;
+    border-radius: 25px;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 4px 15px rgba(255, 0, 50, 0.3);
+}
+
+.level-badge.level-6 {
+    background: linear-gradient(45deg, #ffd700, #ff8c00);
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5);
+    animation: master-glow 2s infinite;
+}
+
+@keyframes master-glow {
+    0%, 100% { box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5); }
+    50% { box-shadow: 0 4px 30px rgba(255, 215, 0, 0.8); }
+}
+
+.level-progress-container {
+    margin-top: 1rem;
+}
+
+.level-progress-bar {
+    width: 100%;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.level-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-primary), #ff6b00, var(--color-warning));
+    border-radius: 10px;
+    transition: width 0.5s ease;
+    box-shadow: 0 0 15px rgba(255, 0, 50, 0.6);
+    animation: glow-pulse 2s infinite;
+}
+
+@keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 15px rgba(255, 0, 50, 0.6); }
+    50% { box-shadow: 0 0 25px rgba(255, 0, 50, 1); }
+}
+
+.progress-text {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #aaa;
+    font-family: 'Orbitron', monospace;
+}
+
+.max-level-text {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: var(--color-warning);
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    text-shadow: 0 0 10px var(--color-warning);
+    animation: text-glow 2s infinite;
+}
+
+@keyframes text-glow {
+    0%, 100% { text-shadow: 0 0 10px var(--color-warning); }
+    50% { text-shadow: 0 0 20px var(--color-warning), 0 0 30px var(--color-warning); }
+}
+
+/* ============================================
+   PISTA DEL TUTOR
+   ============================================ */
+.hint-text {
+    font-size: 1rem;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-left: 4px solid var(--color-secondary);
+    border-radius: 8px;
+    word-wrap: break-word;
+}
+
+.hint-text.no-hint {
+    border-left-color: var(--color-primary);
+    background: rgba(255, 0, 50, 0.1);
+}
+
+/* ============================================
+   ESTADÍSTICAS RESPONSIVE
+   ============================================ */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.stat-item {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(26, 26, 46, 0.5));
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #333;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px var(--border-glow);
+}
+
+.stat-item.stat-highlight {
+    border: 2px solid #ff6b00;
+    box-shadow: 0 0 20px rgba(255, 107, 0, 0.4);
+    animation: pulse-highlight 2s infinite;
+}
+
+@keyframes pulse-highlight {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.stat-label {
+    color: #888;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.lives-value {
+    color: var(--color-primary);
+    text-shadow: 0 0 10px var(--color-primary);
+}
+
+.points-value {
+    color: var(--color-secondary);
+    text-shadow: 0 0 10px var(--color-secondary);
+}
+
+.streak-value {
+    color: #ff6b00;
+    text-shadow: 0 0 10px #ff6b00;
+}
+
+@keyframes pulse-fire {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+.streak-bonus {
+    margin-top: 0.3rem;
+    font-size: 0.7rem;
+    color: #ff6b00;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.precision-value {
+    color: var(--color-secondary);
+    text-shadow: 0 0 10px var(--color-secondary);
+}
+
+.achievement-value {
+    color: var(--color-warning);
+    text-shadow: 0 0 10px var(--color-warning);
+}
+
+/* ============================================
+   LOGROS RESPONSIVE
+   ============================================ */
+.achievements-container {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.achievements-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.95rem;
+    color: var(--color-warning);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.achievements-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.achievement-badge {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 107, 0, 0.2));
+    border: 2px solid var(--color-warning);
+    border-radius: 20px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    color: var(--color-warning);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.achievement-badge:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* ============================================
+   BADGES DE DIFICULTAD
+   ============================================ */
+.difficulty-badge {
+    display: block;
+    padding: 0.8rem 1.2rem;
+    border-radius: 10px;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.badge-easy {
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 200, 100, 0.2));
+    border: 2px solid var(--color-success);
+    color: var(--color-success);
+    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+}
+
+.badge-medium {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 150, 0, 0.2));
+    border: 2px solid var(--color-warning);
+    color: var(--color-warning);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.badge-hard {
+    background: linear-gradient(135deg, rgba(255, 0, 50, 0.2), rgba(200, 0, 40, 0.2));
+    border: 2px solid var(--color-danger);
+    color: var(--color-danger);
+    box-shadow: 0 4px 15px rgba(255, 0, 50, 0.3);
+}
+
+.badge-expert {
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(75, 0, 130, 0.2));
+    border: 2px solid #8a2be2;
+    color: #8a2be2;
+    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+}
+
+.badge-master {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 140, 0, 0.3));
+    border: 3px solid var(--color-warning);
+    color: var(--color-warning);
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5);
+    animation: master-glow 2s infinite;
+}
+
+.badge-ultra {
+    background: linear-gradient(135deg, rgba(255, 0, 255, 0.3), rgba(0, 255, 255, 0.3));
+    border: 3px solid #ff00ff;
+    color: #ff00ff;
+    box-shadow: 0 4px 25px rgba(255, 0, 255, 0.6);
+    animation: ultra-glow 1.5s infinite;
+}
+
+@keyframes ultra-glow {
+    0%, 100% { box-shadow: 0 4px 25px rgba(255, 0, 255, 0.6); }
+    50% { box-shadow: 0 4px 35px rgba(0, 255, 255, 0.8); }
+}
+
+/* ============================================
+   CONTENEDOR DE PREGUNTAS
+   ============================================ */
+.question-container {
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.question-title {
+    font-size: 1.2rem;
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.master-title {
+    font-size: 1.3rem;
+    color: var(--color-warning);
+    text-shadow: 0 0 15px var(--color-warning);
+}
+
+.ultra-title {
+    font-size: 1.4rem;
+    color: #ff00ff;
+    text-shadow: 0 0 20px #ff00ff;
+}
+
+.master-subtitle {
+    font-size: 0.85rem;
+    color: #aaa;
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+.tutor-decision {
+    text-align: center;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   TIMER RESPONSIVE
+   ============================================ */
+.timer-container {
+    text-align: center;
+    margin: 1.5rem 0;
+    position: relative;
+}
+
+.timer-circle {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    position: relative;
+    background: conic-gradient(var(--color-primary) 0deg, var(--color-secondary) 180deg, var(--color-primary) 360deg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: timer-pulse 1s infinite;
+}
+
+.timer-circle.master-timer {
+    width: 120px;
+    height: 120px;
+    background: conic-gradient(var(--color-warning) 0deg, #ff8c00 180deg, var(--color-warning) 360deg);
+}
+
+.timer-circle.ultra-timer {
+    width: 140px;
+    height: 140px;
+    background: conic-gradient(#ff00ff 0deg, #00ffff 180deg, #ff00ff 360deg);
+}
+
+@keyframes timer-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.timer-inner {
+    width: 80px;
+    height: 80px;
+    background: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.master-timer .timer-inner {
+    width: 100px;
+    height: 100px;
+}
+
+.ultra-timer .timer-inner {
+    width: 120px;
+    height: 120px;
+}
+
+.timer-text {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 0 10px #ffffff;
+}
+
+.master-timer .timer-text {
+    font-size: 2rem;
+}
+
+.ultra-timer .timer-text {
+    font-size: 2.2rem;
+}
+
+@keyframes pulse-danger {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.timer-warning {
+    margin-top: 1rem;
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.master-warning {
+    color: var(--color-warning);
+    font-size: 1rem;
+}
+
+/* ============================================
+   BOTONES DE RESPUESTA RESPONSIVE
+   ============================================ */
+.answers-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.answer-btn {
+    background: linear-gradient(135deg, var(--bg-panel), rgba(22, 33, 62, 0.8));
+    border: 2px solid var(--color-secondary);
+    color: #ffffff;
+    padding: 1.2rem;
+    border-radius: 12px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.answer-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.answer-btn:hover {
+    background: linear-gradient(135deg, rgba(0, 100, 255, 0.3), rgba(255, 0, 50, 0.3));
+    border-color: var(--color-primary);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 35px var(--border-glow);
+}
+
+.answer-btn:hover::before {
+    left: 100%;
+}
+
+.answer-btn:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+/* ============================================
+   INPUT DE RESPUESTA LIBRE RESPONSIVE
+   ============================================ */
+.text-input-container {
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.text-input {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--color-secondary);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    color: #ffffff;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    font-family: 'Exo 2', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.text-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 25px rgba(255, 0, 50, 0.4);
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.master-input {
+    border: 3px solid var(--color-warning);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    font-weight: 600;
+}
+
+.master-input:focus {
+    border-color: var(--color-warning);
+    box-shadow: 0 0 35px rgba(255, 215, 0, 0.6);
+}
+
+.ultra-input {
+    border: 3px solid #ff00ff;
+    box-shadow: 0 0 25px rgba(255, 0, 255, 0.4);
+}
+
+.ultra-input:focus {
+    border-color: #00ffff;
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.7);
+}
+
+.submit-btn {
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    border: none;
+    color: #ffffff;
+    padding: 0.9rem 2.5rem;
+    border-radius: 25px;
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(255, 0, 50, 0.4);
+}
+
+.master-btn {
+    background: linear-gradient(45deg, var(--color-warning), #ff8c00);
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+}
+
+.master-btn:hover {
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
+}
+
+.ultra-btn {
+    background: linear-gradient(45deg, #ff00ff, #00ffff);
+    box-shadow: 0 4px 25px rgba(255, 0, 255, 0.5);
+}
+
+.ultra-btn:hover {
+    box-shadow: 0 15px 45px rgba(0, 255, 255, 0.7);
+}
+
+/* ============================================
+   INDICADOR DE PRESIÓN
+   ============================================ */
+.pressure-indicator {
+    position: fixed;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 150px;
+    background: linear-gradient(to top, var(--color-success), var(--color-warning), var(--color-danger));
+    border-radius: 3px;
+    opacity: 0.6;
+}
+
+/* ============================================
+   EFECTOS DE FEEDBACK
+   ============================================ */
+.success-flash {
+    animation: success-pulse 0.5s ease-out;
+}
+
+.error-flash {
+    animation: error-shake 0.6s ease-out;
+}
+
+@keyframes success-pulse {
+    0% { background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a2e 50%, #16213e 100%); }
+    50% { background: linear-gradient(135deg, #0a3a0a 0%, #1a4a2e 50%, #164e3e 100%); }
+    100% { background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a2e 50%, #16213e 100%); }
+}
+
+@keyframes error-shake {
+    0%, 20%, 40%, 60%, 80% { 
+        transform: translateX(-5px); 
+        background: linear-gradient(135deg, #3a0a0a 0%, #4a1a2e 50%, #4e163e 100%);
+    }
+    10%, 30%, 50%, 70% { 
+        transform: translateX(5px); 
+    }
+    100% { 
+        transform: translateX(0); 
+        background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a2e 50%, #16213e 100%);
+    }
+}
+
+@keyframes slideOutUp {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-30px); }
+}
+
+/* ============================================
+   SCROLLBAR PERSONALIZADO
+   ============================================ */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, var(--color-secondary), var(--color-primary));
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - TABLET
+   ============================================ */
+@media (max-width: 768px) {
+    .title-text {
+        font-size: 1.4rem;
+    }
+    
+    .subtitle {
+        font-size: 0.65rem;
+    }
+    
+    .header-title i {
+        font-size: 1.5rem;
+    }
+    
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .btn-text {
+        display: none;
+    }
+    
+    .btn i {
+        margin-right: 0;
+    }
+    
+    .tutor-panel {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .tutor-icon {
+        font-size: 2rem;
+    }
+    
+    .tutor-label {
+        font-size: 0.9rem;
+    }
+    
+    .tutor-message {
+        font-size: 0.95rem;
+    }
+    
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+    
+    .stat-value {
+        font-size: 1.2rem;
+    }
+    
+    .level-badge {
+        font-size: 1rem;
+        padding: 0.5rem 1.2rem;
+    }
+    
+    .question-title {
+        font-size: 1.1rem;
+    }
+    
+    .difficulty-badge {
+        font-size: 0.85rem;
+        padding: 0.6rem 1rem;
+    }
+    
+    .answers-container {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    
+    .answer-btn {
+        padding: 1rem;
+        font-size: 0.95rem;
+    }
+    
+    .timer-circle {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .timer-inner {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .timer-text {
+        font-size: 1.5rem;
+    }
+    
+    .text-input {
+        font-size: 1rem;
+        padding: 0.9rem 1.2rem;
+    }
+    
+    .submit-btn {
+        padding: 0.8rem 2rem;
+        font-size: 0.9rem;
+    }
+    
+    .achievement-badge {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.7rem;
+    }
+    
+    .badge-text {
+        display: inline;
+    }
+    
+    .pressure-indicator {
+        display: none;
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - MOBILE
+   ============================================ */
+@media (max-width: 480px) {
+    header {
+        padding: 0.6rem 1rem;
+    }
+    
+    .header-content {
+        gap: 0.5rem;
+    }
+    
+    .title-text {
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+    }
+    
+    .subtitle {
+        font-size: 0.6rem;
+        margin-top: 0.1rem;
+    }
+    
+    .header-title i {
+        font-size: 1.2rem;
+    }
+    
+    .header-buttons {
+        gap: 0.5rem;
+    }
+    
+    .btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+        border-radius: 8px;
+    }
+    
+    .main-container {
+        margin: 1rem auto;
+        padding: 0 0.8rem;
+    }
+    
+    .tutor-panel {
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+        border-radius: 12px;
+    }
+    
+    .tutor-icon {
+        font-size: 1.8rem;
+    }
+    
+    .tutor-label {
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .tutor-message {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+    
+    .tutor-metrics {
+        gap: 0.5rem;
+    }
+    
+    .metric {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .close-tutor {
+        width: 26px;
+        height: 26px;
+    }
+    
+    .info-panel {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 12px;
+    }
+    
+    .level-indicator {
+        margin-bottom: 1rem;
+    }
+    
+    .level-badge {
+        font-size: 0.85rem;
+        padding: 0.4rem 1rem;
+        letter-spacing: 1px;
+    }
+    
+    .progress-text {
+        font-size: 0.75rem;
+    }
+    
+    .max-level-text {
+        font-size: 0.9rem;
+    }
+    
+    .hint-text {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.6rem;
+    }
+    
+    .stat-item {
+        padding: 0.8rem 0.5rem;
+        border-radius: 8px;
+    }
+    
+    .stat-label {
+        font-size: 0.7rem;
+    }
+    
+    .stat-label i {
+        display: block;
+        margin-bottom: 0.2rem;
+        font-size: 1rem;
+    }
+    
+    .stat-value {
+        font-size: 1.1rem;
+    }
+    
+    .streak-bonus {
+        font-size: 0.65rem;
+    }
+    
+    .achievements-container {
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+    
+    .achievements-title {
+        font-size: 0.85rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .achievements-grid {
+        gap: 0.4rem;
+    }
+    
+    .achievement-badge {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.6rem;
+        border-radius: 15px;
+    }
+    
+    .badge-text {
+        display: none;
+    }
+    
+    .difficulty-badge {
+        font-size: 0.75rem;
+        padding: 0.6rem 0.8rem;
+        margin-bottom: 1rem;
+        letter-spacing: 1px;
+    }
+    
+    .question-container {
+        margin: 1rem 0;
+    }
+    
+    .question-title {
+        font-size: 1rem;
+        line-height: 1.3;
+    }
+    
+    .master-title {
+        font-size: 1.1rem;
+    }
+    
+    .ultra-title {
+        font-size: 1.2rem;
+    }
+    
+    .master-subtitle {
+        font-size: 0.75rem;
+    }
+    
+    .tutor-decision {
+        padding: 0.6rem;
+        margin-bottom: 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .timer-container {
+        margin: 1rem 0;
+    }
+    
+    .timer-circle {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .timer-inner {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .timer-text {
+        font-size: 1.3rem;
+    }
+    
+    .timer-circle.master-timer {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .master-timer .timer-inner {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .master-timer .timer-text {
+        font-size: 1.5rem;
+    }
+    
+    .timer-circle.ultra-timer {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .ultra-timer .timer-inner {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .ultra-timer .timer-text {
+        font-size: 1.7rem;
+    }
+    
+    .timer-warning {
+        margin-top: 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .master-warning {
+        font-size: 0.9rem;
+    }
+    
+    .answers-container {
+        gap: 0.6rem;
+        margin: 1rem 0;
+    }
+    
+    .answer-btn {
+        padding: 0.9rem;
+        font-size: 0.9rem;
+        border-radius: 10px;
+    }
+    
+    .text-input-container {
+        margin: 1rem 0;
+    }
+    
+    .text-input {
+        font-size: 0.95rem;
+        padding: 0.8rem 1rem;
+        max-width: 100%;
+        border-radius: 10px;
+    }
+    
+    .submit-btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        border-radius: 20px;
+    }
+    
+    .pressure-indicator {
+        display: none;
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - PANTALLAS PEQUEÑAS
+   ============================================ */
+@media (max-width: 360px) {
+    .title-text {
+        font-size: 0.95rem;
+    }
+    
+    .subtitle {
+        display: none;
+    }
+    
+    .header-title i {
+        font-size: 1rem;
+    }
+    
+    .btn {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.75rem;
+    }
+    
+    .tutor-panel {
+        padding: 0.6rem;
+    }
+    
+    .tutor-icon {
+        font-size: 1.5rem;
+    }
+    
+    .tutor-label {
+        font-size: 0.75rem;
+    }
+    
+    .tutor-message {
+        font-size: 0.8rem;
+    }
+    
+    .info-panel {
+        padding: 0.8rem;
+    }
+    
+    .level-badge {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.8rem;
+    }
+    
+    .stats-container {
+        gap: 0.5rem;
+    }
+    
+    .stat-item {
+        padding: 0.6rem 0.4rem;
+    }
+    
+    .stat-label {
+        font-size: 0.65rem;
+    }
+    
+    .stat-value {
+        font-size: 1rem;
+    }
+    
+    .difficulty-badge {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.6rem;
+    }
+    
+    .question-title {
+        font-size: 0.9rem;
+    }
+    
+    .answer-btn {
+        padding: 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    .text-input {
+        font-size: 0.9rem;
+        padding: 0.7rem 0.8rem;
+    }
+    
+    .submit-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - LAPTOP/DESKTOP
+   ============================================ */
+@media (min-width: 1024px) {
+    .main-container {
+        max-width: 1400px;
+        padding: 0 2rem;
+    }
+    
+    .title-text {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 0.75rem;
+    }
+    
+    .tutor-panel {
+        padding: 2rem;
+    }
+    
+    .tutor-icon {
+        font-size: 3rem;
+    }
+    
+    .tutor-label {
+        font-size: 1.2rem;
+    }
+    
+    .tutor-message {
+        font-size: 1.1rem;
+    }
+    
+    .info-panel {
+        padding: 2rem;
+    }
+    
+    .stats-container {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1.2rem;
+    }
+    
+    .level-badge {
+        font-size: 1.3rem;
+        padding: 0.7rem 2rem;
+    }
+    
+    .question-title {
+        font-size: 1.4rem;
+    }
+    
+    .difficulty-badge {
+        font-size: 1.1rem;
+        padding: 1rem 1.8rem;
+    }
+    
+    .answers-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .answer-btn {
+        padding: 1.5rem;
+        font-size: 1.1rem;
+    }
+    
+    .timer-circle {
+        width: 130px;
+        height: 130px;
+    }
+    
+    .timer-inner {
+        width: 110px;
+        height: 110px;
+    }
+    
+    .timer-text {
+        font-size: 2.2rem;
+    }
+    
+    .timer-circle.master-timer {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .master-timer .timer-inner {
+        width: 130px;
+        height: 130px;
+    }
+    
+    .master-timer .timer-text {
+        font-size: 2.5rem;
+    }
+    
+    .text-input {
+        font-size: 1.2rem;
+        padding: 1.2rem 2rem;
+        max-width: 600px;
+    }
+    
+    .submit-btn {
+        padding: 1rem 3rem;
+        font-size: 1.1rem;
+    }
+    
+    .pressure-indicator {
+        width: 6px;
+        height: 200px;
+        right: 20px;
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - PANTALLAS GRANDES
+   ============================================ */
+@media (min-width: 1440px) {
+    .main-container {
+        max-width: 1600px;
+    }
+    
+    .title-text {
+        font-size: 2.2rem;
+    }
+    
+    .tutor-panel {
+        padding: 2.5rem;
+    }
+    
+    .tutor-message {
+        font-size: 1.2rem;
+    }
+    
+    .info-panel {
+        padding: 2.5rem;
+    }
+    
+    .level-badge {
+        font-size: 1.4rem;
+        padding: 0.8rem 2.5rem;
+    }
+    
+    .question-title {
+        font-size: 1.5rem;
+    }
+    
+    .answers-container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+    
+    .answer-btn {
+        padding: 1.8rem;
+        font-size: 1.2rem;
+    }
+}
+
+/* ============================================
+   ORIENTACIÓN LANDSCAPE PARA MÓVILES
+   ============================================ */
+@media (max-width: 768px) and (orientation: landscape) {
+    header {
+        padding: 0.5rem 1rem;
+    }
+    
+    .main-container {
+        margin: 0.8rem auto;
+    }
+    
+    .tutor-panel {
+        flex-direction: row;
+        padding: 0.8rem;
+    }
+    
+    .tutor-icon {
+        font-size: 1.5rem;
+    }
+    
+    .timer-container {
+        margin: 0.8rem 0;
+    }
+    
+    .timer-circle {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .timer-inner {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .timer-text {
+        font-size: 1.2rem;
+    }
+    
+    .stats-container {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    
+    .answers-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.8rem;
+    }
+    
+    .answer-btn {
+        padding: 0.8rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* ============================================
+   MODO OSCURO MEJORADO
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #0d0d1e 100%);
+    }
+    
+    .info-panel {
+        background: rgba(10, 10, 20, 0.95);
+    }
+    
+    .tutor-panel {
+        background: linear-gradient(135deg, rgba(255, 0, 50, 0.12), rgba(0, 100, 255, 0.12));
+    }
+}
+
+/* ============================================
+   ACCESIBILIDAD
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Mejoras de contraste para accesibilidad */
+@media (prefers-contrast: high) {
+    .answer-btn {
+        border-width: 3px;
+    }
+    
+    .text-input {
+        border-width: 3px;
+    }
+    
+    .level-badge {
+        border: 3px solid white;
+    }
+}
+
+/* ============================================
+   UTILIDADES RESPONSIVE
+   ============================================ */
+.hide-mobile {
+    display: block;
+}
+
+.show-mobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .hide-mobile {
+        display: none;
+    }
+    
+    .show-mobile {
+        display: block;
+    }
+}
+
+/* Espaciado adaptativo */
+.spacing-responsive {
+    padding: clamp(0.5rem, 2vw, 2rem);
+    margin: clamp(0.5rem, 2vw, 2rem);
+}
+
+/* Texto adaptativo */
+.text-responsive {
+    font-size: clamp(0.875rem, 2vw, 1.125rem);
+}
+
+/* ============================================
+   ANIMACIONES DE CARGA
+   ============================================ */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* ============================================
+   ESTADOS DE HOVER MEJORADOS PARA TOUCH
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+    .answer-btn:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .answer-btn:active {
+        transform: scale(0.95);
+        box-shadow: 0 5px 15px var(--border-glow);
+    }
+    
+    .btn:hover {
+        transform: none;
+    }
+    
+    .btn:active {
+        transform: scale(0.95);
+    }
+}
+
+@media print {
+    header,
+    .pressure-indicator,
+    .timer-container,
+    .tutor-panel,
+    .submit-btn {
+        display: none;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .info-panel,
+    .answer-btn {
+        border: 1px solid black;
+        background: white;
+        color: black;
+    }
+}

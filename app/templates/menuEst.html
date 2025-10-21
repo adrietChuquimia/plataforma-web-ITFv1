@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <link href="../static/galeria/imagenes/robot.png" rel="icon">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="../static/bootstrapC1/css/menuest.css" rel="stylesheet">
+  <title>Menú Estudiantes</title>
+</head>
+
+<body>
+  <!-- Partículas flotantes -->
+  <div class="particles" id="particles"></div>
+
+  <header>
+    <div class="header-title">
+      <i class="fas fa-car-side"></i> Panel de Aprendizaje Automotriz
+    </div>
+    <div class="header-buttons">
+      <a href="{{ url_for('auth.logout') }}" class="btn">
+        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+      </a>
+    </div>
+  </header>
+
+  <div class="tarjetas-container">
+    <a href="{{ url_for('trivia.trivia') }}" class="tarjeta">
+      <i class="fas fa-brain"></i>
+      <div class="tarjeta-title">Trivia</div>
+    </a>
+    <a href="{{ url_for('vision.vision') }}" class="tarjeta">
+      <i class="fas fa-eye"></i>
+      <div class="tarjeta-title">Visión Computarizada</div>
+    </a>
+    <a href="{{ url_for('piezas.mostrar_piezas') }}" class="tarjeta">
+      <i class="fas fa-database"></i>
+      <div class="tarjeta-title">Diccionario de Datos</div>
+    </a>
+    <a href="{{ url_for('mod3d.mod3d') }}" class="tarjeta">
+      <i class="fas fa-cube"></i>
+      <div class="tarjeta-title">Modelos 3D</div>
+    </a>
+    <a href="{{ url_for('tnk.tnk') }}" class="tarjeta">
+      <i class="fas fa-heart"></i>
+      <div class="tarjeta-title">Para ti</div>
+    </a>
+  </div>
+
+  <footer>
+    <div id="datoCurioso" class="dato"></div>
+  </footer>
+
+<script>
+    // Datos curiosos
+    const datosCuriosos = [
+        "Entra a la opción que prefieras para saber más del área automotriz",
+        "Las bujías producen chispas de hasta 40,000 voltios para encender la mezcla",
+        "La opción <TRIVIA> pondrá a prueba tus conocimientos sobre componentes automotrices, demuestra lo que sabes ",
+        "El motor diésel fue inventado por Rudolf Diesel en 1893",
+        "La opción <VISIÓN COMPUTARIZADA> te permitirá ver información de piezas automotrices, solo enciende tu cámara y tómale una fotografia o busca la foto desde tu galeria",
+        "El primer vehículo con control electrónico de frenos apareció en 1971",
+        "La opción <DICCIONARIO DE DATOS> es un repositorio general de componentes automotrices, puedes leer más sobre tus piezas favoritas ",
+        "Los sensores en autotrónica miden velocidad, temperatura y presión con precisión extrema",
+        "La opción <MODELOS 3D> te permitirá ver modelos 3d de automoviles por décadas junto con su historia",
+        "El ESP32 puede controlar robots y monitorear sistemas automotrices mediante IoT",
+        "La opción <MINIJUEGO> es para demostrar que no puedes llegar al nivel 100",
+        "El ABS evita que las ruedas se bloqueen al frenar en superficies resbaladizas"   
+    ];
+
+    let index = 0;
+    const datoElement = document.getElementById("datoCurioso");
+
+    function mostrarDato() {
+        datoElement.classList.remove("visible");
+        setTimeout(() => {
+            datoElement.textContent = datosCuriosos[index];
+            datoElement.classList.add("visible");
+            index = (index + 1) % datosCuriosos.length;
+        }, 600);
+    }
+
+    // Crear partículas flotantes
+    function createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        
+        for (let i = 0; i < 50; i++) {
+            setTimeout(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                
+                // Colores aleatorios
+                const colors = ['rgba(255, 0, 50, 0.6)', 'rgba(0, 100, 255, 0.6)', 'rgba(0, 255, 255, 0.6)'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                particlesContainer.appendChild(particle);
+                
+                // Remover partícula después de la animación
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, 8000);
+            }, i * 100);
+        }
+    }
+
+    // Inicializar
+    mostrarDato();
+    createParticles();
+    setInterval(mostrarDato, 10000);
+    setInterval(createParticles, 3000);
+
+    // Animaciones adicionales al cargar
+    window.addEventListener('load', () => {
+        const tarjetas = document.querySelectorAll('.tarjeta');
+        tarjetas.forEach((tarjeta, index) => {
+            setTimeout(() => {
+                tarjeta.style.animation = 'slideIn 0.6s ease-out forwards';
+            }, index * 200);
+        });
+    });
+</script>
+</body>
+</html>

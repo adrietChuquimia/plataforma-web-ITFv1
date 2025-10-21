@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: 
+        linear-gradient(45deg, #0a0a0a 0%, #052364 25%, #06065e 50%, #42025f 75%, #160f77 100%),
+        radial-gradient(circle at 80% 20%, rgba(0, 100, 255, 0.1) 0%, transparent 90%);
+      background-size: 400% 400%, 100% 100%, 100% 100%;
+      animation: gradientShift 15s ease infinite;
+      color: #e0e0e0;
+      font-family: 'Orbitron', monospace;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 255, 255, 0.02) 2px,
+          rgba(0, 255, 255, 0.02) 4px
+        );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 20px rgb(128, 101, 101); }
+      50% { box-shadow: 0 0 40px rgba(0, 150, 255, 0.5); }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes neonFlicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+
+    header {
+      background: linear-gradient(135deg, #0d1117 0%, #1a0000 50%, #000033 100%);
+      border-bottom: 2px solid transparent;
+      border-image: linear-gradient(90deg, #ff0033, #0066ff, #ff0033) 1;
+      padding: 25px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+      animation: slideIn 1s ease-out;
+      backdrop-filter: blur(10px);
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, 
+        rgba(255, 0, 50, 0.1) 0%, 
+        rgba(0, 100, 255, 0.1) 50%, 
+        rgba(255, 0, 50, 0.1) 100%);
+      animation: pulse 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .header-title {
+      font-size: 2.6em;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color:white;
+      background-size: 200% 200%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-buttons {
+      display: flex;
+      gap: 15px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-buttons .btn {
+      background: linear-gradient(135deg, #ff0000, #00a2ff);
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      color: #ffffff;
+      padding: 12px 24px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-family: 'Orbitron', monospace;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-buttons .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .header-buttons .btn:hover::before {
+      left: 100%;
+    }
+
+    .header-buttons .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 25px rgba(255, 0, 50, 0.4), 0 0 50px rgba(0, 100, 255, 0.3);
+    }
+
+    .tarjetas-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin: 10px 40px 120px;
+      padding: 20px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .tarjeta {
+      background: linear-gradient(135deg, 
+        rgba(20, 20, 30, 0.9) 0%, 
+        rgba(40, 10, 10, 0.8) 30%, 
+        rgba(10, 10, 40, 0.8) 70%, 
+        rgba(20, 20, 30, 0.9) 100%);
+      border: 2px solid transparent;
+      border-radius: 20px;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #b0b0b0;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      min-height: 180px;
+    }
+
+    .tarjeta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, 
+        rgba(255, 0, 50, 0.1), 
+        rgba(0, 100, 255, 0.1), 
+        rgba(255, 0, 50, 0.1));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .tarjeta::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #ff0033, #0066ff, #ff0033, #0066ff);
+      background-size: 300% 300%;
+      border-radius: 22px;
+      z-index: -1;
+      animation: gradientShift 4s ease infinite;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .tarjeta:hover {
+      transform: translateY(-10px) scale(1.05);
+      color: #ffffff;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+
+    .tarjeta:hover::before {
+      opacity: 1;
+    }
+
+    .tarjeta:hover::after {
+      opacity: 1;
+    }
+
+    .tarjeta i {
+      font-size: 3em;
+      margin-bottom: 15px;
+      background: linear-gradient(45deg, #ff0000, #0051ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tarjeta-title {
+      font-size: 1.3em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: linear-gradient(135deg, 
+        rgba(13, 13, 20, 0.95) 0%, 
+        rgba(30, 10, 10, 0.9) 50%, 
+        rgba(10, 10, 30, 0.95) 100%);
+      backdrop-filter: blur(20px);
+      border-top: 2px solid transparent;
+      border-image: linear-gradient(90deg, #ff0033, #0066ff, #ff0033) 1;
+      padding: 20px;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .dato {
+      opacity: 0;
+      transition: all 1.2s ease;
+      font-size: 1.1em;
+      font-weight: 400;
+      letter-spacing: 1px;
+      color: #e0e0e0;
+      transform: translateY(20px);
+    }
+
+    .dato.visible {
+      opacity: 1;
+      transform: translateY(0);
+      text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    }
+
+    /* Efectos de partículas */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: rgba(0, 255, 255, 0.6);
+      border-radius: 50%;
+      animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10px) translateX(100px);
+        opacity: 0;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-title {
+        font-size: 1.5em;
+        letter-spacing: 2px;
+      }
+      
+      .tarjetas-container {
+        margin: 40px 20px 120px;
+        gap: 20px;
+      }
+      
+      .tarjeta {
+        min-height: 160px;
+        padding: 30px 15px;
+      }
+      
+      .tarjeta i {
+        font-size: 2.5em;
+      }
+      
+      .tarjeta-title {
+        font-size: 1.1em;
+      }
+    }
+    a{
+      text-decoration: none;
+    }

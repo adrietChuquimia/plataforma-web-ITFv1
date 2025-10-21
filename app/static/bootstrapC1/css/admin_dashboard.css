@@ -1,0 +1,214 @@
+ body {
+     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+     min-height: 100vh;
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ }
+
+ .dashboard-container {
+     background: white;
+     border-radius: 15px;
+     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+     margin: 20px auto;
+     max-width: 1400px;
+     overflow: hidden;
+ }
+
+ .header {
+     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+     color: white;
+     padding: 2rem;
+     text-align: center;
+ }
+
+ .header h1 {
+     margin: 0;
+     font-weight: 300;
+     font-size: 2.5rem;
+ }
+
+ .content {
+     padding: 2rem;
+ }
+
+ .create-user-form {
+     background: #f8f9fa;
+     border-radius: 10px;
+     padding: 1.5rem;
+     margin-bottom: 2rem;
+ }
+
+ .btn-custom {
+     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+     border: none;
+     border-radius: 8px;
+     padding: 10px 20px;
+     color: white;
+     font-weight: 500;
+     transition: all 0.3s ease;
+ }
+
+ .btn-custom:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+     color: white;
+ }
+
+ .btn-danger {
+     background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+ }
+
+ .btn-danger:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+ }
+
+ .btn-success {
+     background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+     border: none;
+ }
+
+ .btn-warning {
+     background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+     border: none;
+ }
+
+ .users-table {
+     background: white;
+     border-radius: 10px;
+     overflow: hidden;
+     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+ }
+
+ .table th {
+     background: #f8f9fa;
+     border: none;
+     font-weight: 600;
+     color: #495057;
+     padding: 1rem;
+ }
+
+ .table td {
+     border: none;
+     padding: 1rem;
+     vertical-align: middle;
+ }
+
+ .table tbody tr:hover {
+     background: #f8f9fa;
+ }
+
+ .alert {
+     border: none;
+     border-radius: 10px;
+     margin-bottom: 1rem;
+ }
+
+ .form-control {
+     border: 2px solid #e9ecef;
+     border-radius: 8px;
+     padding: 10px 15px;
+     transition: all 0.3s ease;
+ }
+
+ .form-control:focus {
+     border-color: #667eea;
+     box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+ }
+
+ .stats-card {
+     background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+     color: white;
+     border-radius: 10px;
+     padding: 1.5rem;
+     text-align: center;
+     margin-bottom: 2rem;
+     transition: transform 0.2s;
+ }
+
+ .stats-card:hover {
+     transform: translateY(-2px);
+ }
+
+ .stats-number {
+     font-size: 2.5rem;
+     font-weight: bold;
+     margin-bottom: 0.5rem;
+ }
+
+ .reload-icon {
+     cursor: pointer;
+     margin-left: 8px;
+     transition: transform 0.2s;
+     font-size: 1.2em;
+ }
+
+ .reload-icon:hover {
+     transform: rotate(360deg);
+ }
+
+ .loading-spinner {
+     color: #ffd700;
+ }
+
+ .stats-subtitle {
+     opacity: 0.9;
+     font-size: 0.85em;
+     margin-top: 5px;
+ }
+
+ .action-btn {
+     margin: 0 2px;
+     padding: 5px 10px;
+     font-size: 0.875rem;
+ }
+
+ .user-email {
+     font-weight: 600;
+ }
+
+ .user-status-active {
+     color: white;
+ }
+
+ .user-status-disabled {
+     color: #dc3545;
+ }
+
+ .uid-code {
+     font-family: 'Courier New', monospace;
+     background: #f8f9fa;
+     padding: 4px 8px;
+     border-radius: 4px;
+     border: 1px solid #dee2e6;
+     font-size: 0.8em;
+ }
+
+ .table-actions {
+     white-space: nowrap;
+     width: 200px;
+ }
+
+ .modal-header {
+     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+     color: white;
+     border-bottom: none;
+ }
+
+ .modal-header .btn-close {
+     filter: invert(1);
+ }
+
+ .password-input-group {
+     position: relative;
+ }
+
+ .password-toggle {
+     position: absolute;
+     right: 10px;
+     top: 50%;
+     transform: translateY(-50%);
+     background: none;
+     border: none;
+     color: #6c757d;
+     cursor: pointer;
+ }

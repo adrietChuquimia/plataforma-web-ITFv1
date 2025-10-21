@@ -1,0 +1,106 @@
+    body {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+      font-family: 'Exo 2', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .game-over-card {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(26, 26, 46, 0.9));
+      border: 2px solid #ff0032;
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8),
+                  0 0 30px rgba(255, 0, 50, 0.4);
+      animation: card-descent 1.2s ease-out;
+    }
+
+    .game-over-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: #ff0032;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 15px #ff0032, 0 0 25px #ff0032;
+    }
+
+    .compact-stats {
+      display: flex;
+      justify-content: space-between;
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      border: 1px solid #333;
+    }
+
+    .stat {
+      text-align: center;
+      flex: 1;
+    }
+
+    .stat-label {
+      color: #888;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    .stat-value {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .level-value {
+      color: #0064ff;
+      text-shadow: 0 0 8px #0064ff;
+    }
+
+    .points-value {
+      color: #ff0032;
+      text-shadow: 0 0 8px #ff0032;
+    }
+
+    .defeat-message {
+      border: 1px solid #ff0032;
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1.5rem 0;
+      color: #ff6b6b;
+      font-size: 0.95rem;
+    }
+
+    .play-again-btn {
+      background: linear-gradient(45deg, #ff0032, #0064ff);
+      border: none;
+      color: #fff;
+      padding: 1rem 2rem;
+      border-radius: 25px;
+      font-family: 'Orbitron', monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .play-again-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(255, 0, 50, 0.4),
+                  0 0 30px rgba(0, 100, 255, 0.3);
+    }
+
+    @keyframes card-descent {
+      0% { opacity: 0; transform: translateY(-100px) scale(1.2); filter: blur(10px); }
+      100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    }

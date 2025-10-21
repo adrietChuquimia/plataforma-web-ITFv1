@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Línea del Tiempo Automotriz 3D</title>
+  <link href="../static/galeria/imagenes/D3.png" rel="icon">
+  <link href="../static/bootstrapC1/css/automotive-timeline.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet"> 
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+        <div class="header-title">
+            <i class="fas fa-car"></i>EVOLUCIÓN DE AUTOS
+            <p class="subtitle">Línea del Tiempo 3D</p>
+        </div>
+        <div class="header-buttons">
+            <a href="{{ url_for('main.menuest') }}" class="btn">
+                <i class="fas fa-home"></i> Inicio
+            </a>
+            <a href="{{ url_for('auth.logout') }}" class="btn">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            </a>
+        </div>
+    </header>
+
+
+  <div class="container">
+    <div class="timeline-container">
+      <div class="timeline-line"></div>
+      <div id="contenedor-modelos"></div>
+    </div>
+  </div>
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+
+  <script>
+    const modelos = [
+      {
+        src: "/static/modelos/1950Jeep.glb",
+        alt: "Jeep Willys MB",
+        year: "1941-1945",
+        historia:"El robusto y sencillo Jeep Willys MB 4x4 se convirtió en el mejor amigo de los soldados durante la Segunda Guerra Mundial. El jefe del Estado Mayor del Ejército describió al Jeep como la más importante contribución de Estados Unidos al armamento moderno. Aunque, el Willys MB no fue el primer vehículo de tracción en las cuatro ruedas, el vehículo Jeep personificaba el lema Go Anywhere Do Anything que influyó en cada 4x4 construido con posterioridad. Fue construido con transmisión de 3 velocidades y reversa, un motor 4-134 L Head Motor (463) tipo L4-134 Go-Devil, con una potencia de 60hp a 4000 rpm de 4 cilindros. Actualmente, en Nueva York, el Museo de Arte Moderno incluye un Jeep 4x4 militar en su exhibición ya que se considera una de las pocas expresiones genuinas de arte en máquina.",
+        specs: ["L4-134", "Jeep", "EEUU"]
+      },
+      {
+        src: "/static/modelos/1960Dodge Charger.glb",
+        alt: "Dodge Charger",
+        year: "1963-1969",
+        historia: "La imagen de los autos de la época estaban diseñados para personas mayores lo que impulsó a Dodge y Plymouth a crear su nueva y emocionante dirección. Se inició su desarrollo en 1963 con 2 modelos listos para 1964. Los conductores Jim Johnson y Jimmy Nix recorrieron el condado manejando los autos; no duraron mucho ya que uno resultó gravemente dañado en un accidente de remolque y el otro se estrelló, lo que dio lugar al DODGE CHARGER II en 1965. Este modelo era mucho más potente que su predecesor. Sin embargo, fue el Charger de 1966 que salió a la venta, tenía  una consola central de tamaño completo, cuatro asientos tipo butaca y un panel de instrumentos revisado que se diferenciaba por sus cuatro grandes anillos con indicadores y una lámina de madera, plana en el compartimento de almacenamiento. El motor era un 318 V8 que desarrollaba 230 caballos de fuerza con un carburador de 2 cuerpos. También estaba disponible opcionalmente un 361 de 2 cuerpos  y el motor tope de gama, el 426 HEMI, estaba disponible con 425 caballos de fuerza y equipado con dos cilindros en línea de 4 cuerpos. Los Chargers de 1966 eran aerodinámicamente estables y relativamente elegantes junto a su velocidad. Los siguientes modelos de 1967, 1968 y 1969 mantuvieron la estructura base pero hicieron mejoras en cada una de los modelos que sacaban.",
+        specs: ["V8 318", "Jóvenes", "Nuevo"]
+      },
+      {
+        src: "/static/modelos/1972_Bursley_Defiance.glb",
+        alt: "Valiant Super-Bee",
+        year: "1972",
+        historia: "El Super Valiant Bee fue un auto equipado con un motor V8 318 pulgadas cúbicas con 270 a 300 hp, se convirtió en el auto más rápido de México en su época. Este legendario auto contaba con transmisión manual de 4 velocidades con cambios suaves, construcción con componentes de zinc, asientos individuales  y un tacómetro externo montado fuera del tablero como característica distintiva. Su motor estaba montado en la parte delantera y tenía un compartimento en la parte trasera. Puramente mecánico, carecía de dirección asistida, control de tracción y ABS, lo que lo hacía económico y ecológico por reducir accesorios. Su producción fue extremadamente limitada con solo 1200 unidades fabricadas en un año, lo que lo convirtió en una pieza de colección.",
+        specs: ["V8 318", "Muscle Car", "Mexicano"]
+      },
+      {
+        src: "/static/modelos/1980Toyota AE86.glb",
+        alt: "Toyota AE86 Corolla Levin / Sprinter Trueno",
+        year: "1983-1987",
+        historia:"El modelo deportivo de quinta generación de la serie COROLLA/SPRINTER estaba disponible en dos versiones: un cupé de dos puertas con carrocería tipo notchback y un cupé de tres puertas con carrocería hatchback. Solo los vehículos equipados con el famoso motor DOHC de 1.6 litros y 16 válvulas (4A-GEU) recibieron la designación AE86. A pesar de que su producción se interrumpió, la reputación del AE86 se fortaleció tras aparecer en un popular manga en la década de 1990. Sigue siendo extremadamente popular hoy en día, y en Japón se le conoce cariñosamente como hachi-roku, que significa ocho-seis. Se convirtió en una leyenda del automovilismo deportivo gracias a su configuración de tracción trasera y su balance de peso. Su transmisión manual de 5 velocidades, diferencial de deslizamiento limitado opcional y suspensión independiente en las cuatro ruedas lo convirtieron en un auto apto para el drifting y la conducción deportiva. El diseño del AE86 priorizaba el manejo sobre la potencia bruta. Producido entre 1983 y 1987, el AE86 representa la esencia pura del deportivo japonés: ligero, ágil y confiable",
+        specs: ["4A-GE", "Hachiroku", "Japonés"]
+      },
+      {
+        src: "/static/modelos/1994 Nissan 180MX.glb",
+        alt: "Nissan 180SX",
+        year: "1989-1998",
+        historia:"El 180SX era un cupé hatchback. Alcanzaba un rendimiento aerodinámico de Cx de 0,3 gracias a su carrocería fluida con faros retráctiles. Contaba con un motor CA18DET de 1800 cc, un DOHC de 4 válvulas con turbo, suspensión trasera multibrazo e HICAS-II, lo que permitía un alto equilibrio entre estabilidad de manejo, rendimiento en marcha y comodidad. Con Amortiguador/Multilink (delantero y trasero)y potencia máxima del motor de 123 kW (175 CV)/6400 rpm. Contaba con transmisión manual de 5 velocidades. El 180SX se mantuvo sin cambios en su diseño básico hasta 1998 y ejerció una gran influencia en los jóvenes de la época por su balance entre potencia, manejo y potencial de personalización, fue uno de los deportivos más deseados de ese entonces.",
+        specs: ["SR20DET ", "Deportivo", "Japonés"]
+      },
+      {
+        src: "/static/modelos/2000Mazda RX-7.glb",
+        alt: "Mazda RX-7",
+        year: "1992-2002",
+        historia: "Diseñado por Matasaburo Maeda, es un cupé británico de dos puertas famoso por su imponente diseño y su ágil rendimiento. El motor rotativo de doble rotor estaba montado justo detrás del eje delantero. Esto le confirió al RX-7 un equilibrio de peso delantero/trasero casi perfecto (50/50) y un centro de gravedad bajo, lo que le confería una maniobrabilidad más suave y precisa. A este equilibrio se sumaban la tracción trasera y la caja de cambios manual, además de sus dimensiones compactas con faros escamoteables, otra característica distintiva del RX-7. La segunda versión, conocida como FC, se convirtió en una propuesta mucho más seria. Con motor Turbo II 13B de 1308 cc (todos los motores del RX-7 sin turbo son 12A y los turboalimentados, 13B). Ofrece casi el doble de potencia que el primer modelo, con 185 CV, una dirección de piñón y cremallera más precisa y frenos de disco en todas las ruedas, notablemente fiel al diseño y la filosofía del coche original. Finalmente, la tercera generación que fue el FD fue mejorado, el motor rotativo 13B-REW de doble rotor ahora contaba con dos turbocompresores dispuestos en secuencia específicamente para aumentar el par motor a bajas revoluciones y el empuje a altas revoluciones. Esto elevó la potencia máxima a 255 CV, comparable a la de los deportivos de tamaño similar de la época. Las tres generaciones de produjeron entre 1992 y 2002",
+        specs: ["Rotativo Wankel 13B-REW", "Aerodinámico", "Japonés"]
+      },
+      {
+        src: "/static/modelos/2010CAR Model.glb",
+        alt: "Lamborghini Aventador",
+        year: "2012",
+        historia: "Lamborghini Aventador LP 700-4 2012 tiene un motor V12 de 6,5 litros que genera 690 CV y acelera de 0 a 100 en tan solo 2,9 segundos. Su icónico diseño de avión de combate se combina con una caja de cambios semiautomática de 7 velocidades con interior de cuero. Con paquete exterior de carbono adicional, llantas delanteras de fábrica de 19 pulgadas, traseras de 20 pulgadas, llantas deportivas negras con pinzas de freno rojas. Iluminación LED, botón de arranque, escapes deportivos dobles y sistema Lamborghini Command con CD, estéreo y Bluetooth. Utiliza una cámara de marcha atrás, climatizador, sensores de aparcamiento, control de tracción entre otras tecnologías. Este modelo es un Lamborghini verdaderamente icónico.",
+        specs: ["Tech", "Eficiente", "Moderno"]
+      },
+      {
+        src: "/static/modelos/2020Nissan GTR.glb",
+        alt: "Nissan GT-R",
+        year: "2024",
+        historia: "El GT-R 2024 incorpora una defensa delantera, un labio frontal y alerones rediseñados. En la parte trasera, los laterales de la defensa y un spoiler trasero rediseñado ayudan al GT-R a agregar carga aerodinámica sin aumentar la resistencia. El motor biturbo de 3.8 litros fabricado con una potencia inmensa produce 565 caballos de fuerza y un torque de 467 lb-pies. Posee 6 velocidades con transmisión de doble embrague.independiente para marchas pares e impares lo cual hace que los cambios de marcha sean muy rápidos.  Con sistemas de tracción en todas las ruedas y de control dinámico del vehículo más avanzados jamás utilizados en un auto de carretera, obtienes la sensación y la respuesta de una tracción trasera con la confianza de una tracción en todas las ruedas.",
+        specs: ["VR38DETT V6", "Supercar", "Japonés"]
+      },
+      {
+        src: "/static/modelos/engine.glb",
+        alt: "FIN",
+        year: "Actualidad",
+        historia: "Esta linea del tiempo automotriz no solo muestra el avance de la tecnología, sino también la pasión humana por llegar más lejos. Cada auto en el tiempo es un reflejo de su época, pero también un impulso para mejorar cada día.",
+        specs: ["Innovación"]
+      }
+    ];
+
+    const contenedor = document.getElementById("contenedor-modelos");
+
+    modelos.forEach((modelo, index) => {
+      const cardDiv = document.createElement("div");
+      cardDiv.className = "car-card";
+
+      const specsBadges = modelo.specs.map(spec =>
+        `<span class="spec-badge">${spec}</span>`
+      ).join('');
+
+      cardDiv.innerHTML = `
+        <div class="year-badge">${modelo.year}</div>
+          <div class="col-md-4 order-md-1 order-2">
+            <div class="model-container">
+              <div class="model-viewer-container" id="modelo-${index}">
+                <button class="load-model-btn" onclick="verModelo(${index})">
+                  <i class="fas fa-cube"></i> Cargar Modelo 3D
+                </button>
+                <div class="loading-spinner" id="loading-${index}"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 order-md-2 order-1">
+            <div class="car-info">
+              <h3 class="car-title">
+                <i class="fas fa-car"></i> ${modelo.alt}
+              </h3>
+              <p class="car-description">${modelo.historia}</p>
+              <div class="tech-specs">
+                ${specsBadges}
+              </div>
+            </div>
+          
+        </div>
+      `;
+
+      contenedor.appendChild(cardDiv);
+    });
+
+    function verModelo(index) {
+      const contenedorModelo = document.getElementById(`modelo-${index}`);
+      const loadingSpinner = document.getElementById(`loading-${index}`);
+      const modelo = modelos[index];
+
+      // Previene que se vuelva a cargar si ya se insertó
+      if (contenedorModelo.querySelector("model-viewer")) return;
+
+      // Mostrar loading
+      const btn = contenedorModelo.querySelector('.load-model-btn');
+      btn.style.display = 'none';
+      loadingSpinner.style.display = 'block';
+
+      // Simular tiempo de carga y luego mostrar el modelo
+      setTimeout(() => {
+        contenedorModelo.innerHTML = `
+          <model-viewer
+            src="${modelo.src}"
+            alt="${modelo.alt}"
+            auto-rotate
+            camera-controls
+            shadow-intensity="1"
+            environment-image="neutral"
+            exposure="1"
+            tone-mapping="aces">
+          </model-viewer>
+        `;
+
+        // Añadir efecto de glow al contenedor
+        contenedorModelo.classList.add('model-active');
+      }, 1500);
+    }
+
+    // Animación de entrada para las tarjetas
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Inicializar animaciones
+    document.querySelectorAll('.car-card').forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(50px)';
+      card.style.transition = `all 0.6s ease ${index * 0.1}s`;
+      observer.observe(card);
+    });
+
+    const scrollTopBtn = document.getElementById("scroll-top");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) {
+        scrollTopBtn.style.display = "flex";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    });
+
+    scrollTopBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  </script>
+
+</body>
+</html>
