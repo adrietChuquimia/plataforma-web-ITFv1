@@ -7,10 +7,8 @@ import cv2
 from PIL import Image
 from flask import Blueprint, request, jsonify, render_template
 from huggingface_hub import hf_hub_download
-import os
 
 # DESCARGA DEL MODELO DESDE HUGGING FACE HUB
-# -------------------------
 
 # Repo y nombre de archivo en HF Hub
 REPO_ID = "Adriet1/vision"  # reemplaza con tu usuario y repo
@@ -23,9 +21,7 @@ MODEL_PATH = hf_hub_download(repo_id=REPO_ID, filename=H5_FILENAME)
 model = tf.keras.models.load_model(MODEL_PATH)
 print("Modelo cargado desde:", MODEL_PATH)
 
-# -------------------------
 # CONFIGURACIÓN DEL BLUEPRINT
-# -------------------------
 vision_bp = Blueprint('vision', __name__)
 
 # Cargar base de conocimiento
@@ -36,9 +32,7 @@ with open(COMPONENTES_JSON, "r", encoding="utf-8") as f:
 # Clases en el mismo orden que el modelo
 class_names = list(conocimiento.keys())
 
-# -------------------------
-# FUNCIONES AUXILIARES
-# -------------------------
+# FUNCIONES AUX
 def base64_to_image(b64_string):
     """Convierte Base64 a imagen numpy lista para el modelo"""
     img_data = base64.b64decode(b64_string)
@@ -91,9 +85,7 @@ def interpretar_prediccion(predicciones, umbral_confianza=0.85):
         "mensaje": mensaje
     }
 
-# -------------------------
 # RUTAS DEL BLUEPRINT
-# -------------------------
 @vision_bp.route('/vision')
 def vision():
     return render_template('vision.html')
