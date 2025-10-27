@@ -11,7 +11,7 @@ from huggingface_hub import hf_hub_download
 # DESCARGA DEL MODELO DESDE HUGGING FACE HUB
 
 # Repo y nombre de archivo en HF Hub
-REPO_ID = "Adriet1/vision"  # reemplaza con tu usuario y repo
+REPO_ID = "Adriet1/visionv1"  # reemplaza con tu usuario y repo
 H5_FILENAME = "keras_model.h5"
 
 # Descarga el archivo .h5 y obtiene la ruta local

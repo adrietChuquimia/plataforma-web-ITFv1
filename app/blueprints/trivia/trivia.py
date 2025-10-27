@@ -187,6 +187,7 @@ regla_t15 = ctrl.Rule(precision['muy_baja'] & aciertos['pocos'], tiempo_otorgado
 regla_t16 = ctrl.Rule(errores_consec['muchos'] & racha_actual['ninguna'], tiempo_otorgado['largo'])
 regla_t17 = ctrl.Rule(precision['baja'] & tiempo_respuesta['lento'], tiempo_otorgado['largo'])
 regla_t18 = ctrl.Rule(aciertos['ninguno'] & errores_consec['muchos'], tiempo_otorgado['largo'])
+
 todas_reglas = [
     regla_d0_nuevo, regla_p0_nuevo, regla_m0_nuevo, regla_t0_nuevo,
     # Dificultad
