@@ -8,10 +8,12 @@
    <meta content="" name="keywords">
 
    <link href="../static/galeria/imagenes/trivia.png" rel="icon">
-   <link href="../static/bootstrapC1/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-   <link href="../static/bootstrapC1/css/trivia.css" rel="stylesheet">
+   <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="../static/bootstrapC1/css/trivia.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
 </head>
 <body>
    <header>
@@ -72,15 +74,13 @@
                 
                 {% set racha = session.get('racha', 0) %}
                 {% if nivel == 1 %}
-                    {% set necesarios = 5 %}
+                    {% set necesarios = 6 %}
                 {% elif nivel == 2 %}
-                    {% set necesarios = 8 %}
+                    {% set necesarios = 10 %}
                 {% elif nivel == 3 %}
-                    {% set necesarios = 12 %}
+                    {% set necesarios = 15 %}
                 {% elif nivel == 4 %}
-                    {% set necesarios = 16 %}
-                {% elif nivel == 5 %}
-                    {% set necesarios = 0 %}
+                    {% set necesarios = 18 %}
                 {% endif %}
                 
                 {% if necesarios > 0 %}

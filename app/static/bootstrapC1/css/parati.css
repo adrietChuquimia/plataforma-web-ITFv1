@@ -1,4 +1,4 @@
-        :root {
+:root {
             --black: #000000;
             --red: #ff1100;
             --red-glow: #ff3300;
@@ -17,7 +17,6 @@
             background: 
                 radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
                 linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #0f0f0f 50%, #1e1e1e 75%, #0a0a0a 100%);
             color: #e0e6ed;
             font-family: 'Exo 2', sans-serif;
@@ -44,6 +43,7 @@
             pointer-events: none;
             z-index: 1;
         }
+
 
         @keyframes backgroundFloat {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -258,60 +258,35 @@
 }
 
 
-        /* Header con efecto de neón */
         .main-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
             text-align: center;
-            padding: 20px 0;
-            position: relative;
-        }
-
-        .main-title {
-            font-size: 3.7rem;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 1rem;
-            font-family: 'Impact', 'Times New Roman', sans-serif;
-            letter-spacing: 8px;
+            margin: 2rem 1rem;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 3px;
             text-transform: uppercase;
             position: relative;
             color: var(--red);
-            /* Color principal del texto */
             text-shadow:
-                -3px -3px 0px white,
-                -3px 3px 0px white,
-                3px -3px 0px white,
-                3px 3px 0px white,
-                -6px -6px 0px white,
-                -6px 6px 0px white,
-                6px -6px 0px white,
-                6px 6px 0px white,
-                0 0 30px var(--red-glow),
-                0 0 50px var(--red-glow);
+                -2px -2px 0px white,
+                -2px 2px 0px white,
+                2px -2px 0px white,
+                2px 2px 0px white,
+                0 0 20px var(--red-glow),
+                0 0 40px var(--red-glow);
             animation: titlePulse 2s ease-in-out infinite;
-            transform: perspective(1000px) rotateX(15deg);
         }
 
-
-        .main-title::before {
-            position: absolute;
-            top: 0;
-            left: 0;
-            color: var(--red-glow);
-            z-index: -1;
-            animation: titleGlitch 4s ease-in-out infinite;
-        }
-
-        .main-title::after {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(45deg, transparent, var(--red), transparent);
-            opacity: 0.1;
-            animation: titleSweep 3s linear infinite;
-            z-index: -2;
+        @keyframes titlePulse {
+            0%, 100% {
+                filter: drop-shadow(0 0 20px var(--red-glow));
+                transform: scale(1);
+            }
+            50% {
+                filter: drop-shadow(0 0 40px var(--red-glow));
+                transform: scale(1.02);
+            }
         }
 
         @keyframes titlePulse {
@@ -455,4 +430,3 @@
     background: linear-gradient(45deg, #ff0040, #00d4ff);
 }
 
-    

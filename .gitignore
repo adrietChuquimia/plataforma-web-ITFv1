@@ -13,7 +13,5 @@ __pycache__/
 instance/
 .env
 firebase_llave.json
-# Ignorar videos grandes
-app/static/galeria/videos/*.mp4
 *.egg-info/
 node_modules/" > .gitignore

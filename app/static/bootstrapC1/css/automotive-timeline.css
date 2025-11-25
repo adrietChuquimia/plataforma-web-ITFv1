@@ -1,8 +1,3 @@
-/* ====================================
-   AUTOMOTIVE TIMELINE 3D - STYLES
-   Para usar con Bootstrap
-   ==================================== */
-
 :root {
   --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
@@ -436,7 +431,7 @@ model-viewer {
 
 @media (max-width: 768px) {
   .main-title h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   
   .timeline-line {
