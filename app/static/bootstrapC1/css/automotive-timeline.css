@@ -112,8 +112,7 @@ body {
     gap: 15px;
     position: relative;
     z-index: 2;
-    flex-wrap: wrap;
-    min-width: 150px;
+    min-width: auto;
         }
         
 .btn {
@@ -135,19 +134,6 @@ body {
     display: inline-block;
 }
 
-.btn {
-    border-radius: 25px;
-    font-size: 1rem;
-    font-family: 'Exo 2', sans-serif;
-    font-weight: 600;
-    padding: 0.8rem 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-}
 
 .btn::before {
   content: '';
