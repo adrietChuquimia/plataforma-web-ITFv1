@@ -152,6 +152,7 @@ header::before {
     overflow: hidden;
     transition: all 0.3s ease;
     border: 2px solid transparent;
+    text-decoration: none !important;
 }
 
 .btn::before {

@@ -120,7 +120,7 @@ header::before {
   font-weight: 900;
   letter-spacing: 3px;
   color: white;
-  background-size: 200% 200%;
+  background-size: 100% 100%;
   position: relative;
   z-index: 2;
 }
