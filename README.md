@@ -30,6 +30,15 @@ huggingface-hub==0.29.3
 8. MODELO 3D: Muestra una liena del tiempo automotriz con historia de autos por décadas
 9. PARA TI: Mensaje motivacional para los usuarios
 10. Para salir en la parte superior derecha en todo momento se muestra el boton de "Cerrar Sesión" que retornará al login y de ahi se pude retornar a la página principal
+---Fuentes de plataformas utilizadas
+•	Flaticon. (2023). Iconos gratis de HTML[Sitio web]https://www.flaticon.es/ico
+•	nos-gratis/html
+•	Google. (2023). Firebase: Plataforma para desarrollo de aplicaciones web y móviles [Sitio web]. https://firebase.google.com/
+•	Google. (2023). Teachable Machine [Sitio Web].https://teachablemachine.withgoogle.com/
+•	Hugging Face. (2023). Hugging Face Hub [Sitio web]. https://huggingface.com
+•	Poly Pizza. (2023). Poly Pizza: Descarga de modelos 3D [Sitio web]. https://poly.pizza/
+•	Render. (2023). Render: Plataforma de despliegue web [Sitio web]. https://render.com/
+•	Responsible AI. (2023). Responsible.app [Sitio web]. https://responsible.app/
 ---Autora
 Adriet Daniela Chuquimia Centeno - 2025
 Estado: Estable con uso educativo
